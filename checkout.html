@@ -217,7 +217,7 @@ Podsumowanie
 224,98 zł
 </div>
 
-<button class="pay-btn">
+<button class="pay-btn" onclick="payNow()">
 Zapłać teraz
 </button>
 
@@ -230,6 +230,32 @@ Zapłać teraz
 </div>
 
 </div>
+<script>
 
+function payNow(){
+
+const name =
+document.querySelector('input[type="text"]').value;
+
+const email =
+document.querySelector('input[type="email"]').value;
+
+if(name === "" || email === ""){
+
+alert("Uzupełnij dane klienta.");
+
+return;
+
+}
+
+alert(
+"Dziękujemy za zamówienie w Strong Ants 🐜"
+);
+
+window.location.href = "dziekujemy.html";
+
+}
+
+</script>
 </body>
 </html>
