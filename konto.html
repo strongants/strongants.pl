@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Moje konto - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0d0d0d;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:#161616;
+padding:40px;
+border-radius:20px;
+border:1px solid #333;
+width:380px;
+}
+
+.logo{
+text-align:center;
+font-size:34px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.tabs{
+display:flex;
+margin-bottom:30px;
+}
+
+.tab{
+flex:1;
+padding:15px;
+text-align:center;
+cursor:pointer;
+background:#222;
+border:none;
+color:white;
+font-weight:bold;
+}
+
+.active{
+background:#ffd000;
+color:black;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border-radius:10px;
+border:1px solid #333;
+background:#111;
+color:white;
+box-sizing:border-box;
+}
+
+.button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#ffd000;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+
+.form{
+display:none;
+}
+
+.show{
+display:block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="logo">
+🐜 STRONG ANTS
+</div>
+
+<div class="tabs">
+
+<button class="tab active" onclick="showLogin()">
+Zaloguj się
+</button>
+
+<button class="tab" onclick="showRegister()">
+Zarejestruj się
+</button>
+
+</div>
+
+<div id="login" class="form show">
+
+<input type="email" placeholder="Adres e-mail">
+
+<input type="password" placeholder="Hasło">
+
+<button class="button">
+Zaloguj się
+</button>
+
+</div>
+
+<div id="register" class="form">
+
+<input type="text" placeholder="Imię">
+
+<input type="email" placeholder="Adres e-mail">
+
+<input type="password" placeholder="Hasło">
+
+<button class="button">
+Utwórz konto
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function showLogin(){
+
+document.getElementById('login').classList.add('show');
+document.getElementById('register').classList.remove('show');
+
+document.querySelectorAll('.tab')[0].classList.add('active');
+document.querySelectorAll('.tab')[1].classList.remove('active');
+
+}
+
+function showRegister(){
+
+document.getElementById('register').classList.add('show');
+document.getElementById('login').classList.remove('show');
+
+document.querySelectorAll('.tab')[1].classList.add('active');
+document.querySelectorAll('.tab')[0].classList.remove('active');
+
+}
+
+</script>
+
+</body>
+</html>
+Efekt
