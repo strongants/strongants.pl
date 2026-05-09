@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Płatność - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:50px 20px;
+}
+
+.title{
+font-size:56px;
+color:#ffd000;
+margin-bottom:40px;
+}
+
+.checkout{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+}
+
+.box{
+background:#161616;
+border:1px solid #333;
+border-radius:25px;
+padding:35px;
+margin-bottom:25px;
+}
+
+.box h2{
+color:#ffd000;
+margin-top:0;
+font-size:34px;
+}
+
+input, select{
+width:100%;
+padding:18px;
+margin-top:15px;
+background:#0f0f0f;
+border:1px solid #333;
+border-radius:14px;
+color:white;
+font-size:17px;
+box-sizing:border-box;
+}
+
+.summary{
+background:#161616;
+border:1px solid #333;
+border-radius:25px;
+padding:35px;
+height:fit-content;
+}
+
+.summary h2{
+font-size:38px;
+color:#ffd000;
+margin-top:0;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+font-size:22px;
+}
+
+.total{
+font-size:48px;
+font-weight:bold;
+margin:40px 0;
+}
+
+.pay-btn{
+display:block;
+width:100%;
+padding:22px;
+background:#ffd000;
+border:none;
+border-radius:16px;
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.pay-btn:hover{
+opacity:0.9;
+}
+
+.secure{
+margin-top:20px;
+color:#999;
+font-size:16px;
+text-align:center;
+}
+
+@media(max-width:900px){
+
+.checkout{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:42px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="title">
+💳 Finalizacja zamówienia
+</h1>
+
+<div class="checkout">
+
+<div class="left">
+
+<div class="box">
+
+<h2>
+Dane klienta
+</h2>
+
+<input type="text" placeholder="Imię i nazwisko">
+
+<input type="email" placeholder="Adres e-mail">
+
+<input type="text" placeholder="Numer telefonu">
+
+<input type="text" placeholder="Adres dostawy">
+
+</div>
+
+<div class="box">
+
+<h2>
+Dostawa
+</h2>
+
+<select>
+
+<option>InPost Paczkomat — 14,99 zł</option>
+
+<option>Kurier InPost — 16,99 zł</option>
+
+<option>Orlen Paczka — 12,99 zł</option>
+
+</select>
+
+</div>
+
+<div class="box">
+
+<h2>
+Płatność
+</h2>
+
+<select>
+
+<option>BLIK</option>
+
+<option>Karta płatnicza</option>
+
+<option>Google Pay</option>
+
+<option>Apple Pay</option>
+
+<option>Przelew online</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="summary">
+
+<h2>
+Podsumowanie
+</h2>
+
+<div class="row">
+<span>Produkty</span>
+<span>209,99 zł</span>
+</div>
+
+<div class="row">
+<span>Dostawa</span>
+<span>14,99 zł</span>
+</div>
+
+<div class="total">
+224,98 zł
+</div>
+
+<button class="pay-btn">
+Zapłać teraz
+</button>
+
+<div class="secure">
+🔒 Bezpieczne płatności Strong Ants
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
