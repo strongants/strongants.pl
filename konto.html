@@ -1,94 +1,231 @@
-<div id="panel">
+<body>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0d0d0d;
+color:white;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:260px;
+height:100vh;
+background:#111;
+border-right:2px solid #ffd000;
+padding:30px 20px;
+box-sizing:border-box;
+}
+
+.logo{
+font-size:34px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:50px;
+}
+
+.menu a{
+display:block;
+padding:15px;
+margin-bottom:12px;
+background:#1b1b1b;
+border-radius:12px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.menu a:hover{
+background:#ffd000;
+color:black;
+}
+
+.main{
+margin-left:260px;
+padding:40px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+}
+
+.user-box{
+background:#161616;
+padding:20px;
+border-radius:20px;
+border:1px solid #333;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.avatar{
+width:60px;
+height:60px;
+background:#ffd000;
+color:black;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+font-weight:bold;
+border-radius:50%;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+.card{
+background:#161616;
+padding:25px;
+border-radius:20px;
+border:1px solid #333;
+}
+
+.card h3{
+color:#ffd000;
+margin-top:0;
+}
+
+.order{
+background:#1b1b1b;
+padding:15px;
+border-radius:12px;
+margin-top:15px;
+}
+
+.button{
+display:inline-block;
+margin-top:15px;
+padding:12px 24px;
+background:#ffd000;
+color:black;
+text-decoration:none;
+font-weight:bold;
+border-radius:10px;
+}
+
+.status{
+color:#00ff73;
+font-weight:bold;
+}
+
+</style>
+
+<div class="sidebar">
+
+<div class="logo">
+🐜 STRONG ANTS
+</div>
+
+<div class="menu">
+
+<a href="#">🏠 Panel główny</a>
+
+<a href="#">📦 Moje zamówienia</a>
+
+<a href="#">👤 Dane konta</a>
+
+<a href="#">❤️ Ulubione</a>
+
+<a href="#">⚙️ Ustawienia</a>
+
+<a href="index.html">⬅ Powrót do sklepu</a>
+
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="top">
 
 <h1>Panel klienta</h1>
 
-<p id="user-email"></p>
+<div class="user-box">
+
+<div class="avatar">
+M
+</div>
+
+<div>
+<b>Mateusz</b><br>
+<span class="status">✔ Konto aktywne</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>📦 Ostatnie zamówienie</h3>
+
+<div class="order">
+Strong Ants START BOX + Messor barbarus
+<br><br>
+Status:
+<span class="status">W realizacji</span>
+</div>
+
+<a class="button" href="#">
+Szczegóły zamówienia
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>👤 Dane użytkownika</h3>
 
 <p>
-✔ Konto aktywne
+Email:<br>
+strong.ants4@gmail.com
 </p>
 
-<button onclick="logout()">
-Wyloguj się
-</button>
+<p>
+Hasło i dane konta możesz zmienić
+w ustawieniach konta.
+</p>
+
+<a class="button" href="#">
+Edytuj dane
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>🐜 Centrum hodowcy</h3>
+
+<p>
+Tutaj w przyszłości możesz dodać:
+</p>
+
+<p>
+✔ poradniki<br>
+✔ historię zamówień<br>
+✔ status przesyłek<br>
+✔ zapisane produkty
+</p>
 
 </div>
 
 </div>
 
-<script type="module">
+</div>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signOut,
-onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyCVDfVFPZ0LVU1mwR9IQU21FtlQlJPwpwE",
-authDomain: "strong-ants.firebaseapp.com",
-projectId: "strong-ants",
-storageBucket: "strong-ants.firebasestorage.app",
-messagingSenderId: "673947229704",
-appId: "1:673947229704:web:70e5d7b5b682469b013bbd",
-measurementId: "G-S3QN3G4L41"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-window.register = function(){
-
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-createUserWithEmailAndPassword(auth,email,password)
-.then(() => {
-alert("Konto utworzone!");
-})
-.catch((error) => {
-alert(error.message);
-});
-
-}
-
-window.login = function(){
-
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-signInWithEmailAndPassword(auth,email,password)
-.then(() => {
-alert("Zalogowano!");
-})
-.catch((error) => {
-alert(error.message);
-});
-
-}
-
-window.logout = function(){
-
-signOut(auth);
-
-}
-
-onAuthStateChanged(auth,(user)=>{
-
-if(user){
-
-document.getElementById("auth").style.display="none";
-document.getElementById("panel").style.display="block";
-
-document.getElementById("user-email").innerText =
-"Zalogowano jako: " + user.email;
-
-}else{
-
-document.getElementById("auth").style.display="block";
+</body>
