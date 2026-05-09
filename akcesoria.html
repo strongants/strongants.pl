@@ -40,7 +40,7 @@ margin-bottom:40px;
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:30px;
 }
 
@@ -49,21 +49,40 @@ background:#161616;
 padding:25px;
 border-radius:20px;
 border:1px solid #333;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#ffd000;
 }
 
 .card h3{
 color:#ffd000;
+font-size:28px;
+}
+
+.card p{
+line-height:1.7;
+color:#ddd;
+}
+
+.price{
+font-size:28px;
+color:#ffd000;
+font-weight:bold;
+margin-top:20px;
 }
 
 .button{
 display:inline-block;
-margin-top:15px;
-padding:12px 24px;
+margin-top:20px;
+padding:14px 28px;
 background:#ffd000;
 color:black;
 text-decoration:none;
 font-weight:bold;
-border-radius:10px;
+border-radius:12px;
 }
 
 </style>
@@ -78,36 +97,116 @@ border-radius:10px;
 
 <section class="section">
 
-<h1 class="title">Akcesoria do hodowli mrówek</h1>
+<h1 class="title">
+🧰 Akcesoria do hodowli mrówek
+</h1>
 
 <div class="products">
 
 <div class="card">
 
-<h3>Formikarium Strong Ants</h3>
+<h3>
+Strzykawka 5 ml + igły 2 szt.
+</h3>
 
 <p>
-Profesjonalne formikarium dla kolonii mrówek.
+Profesjonalna strzykawka do nawadniania formikariów
+oraz precyzyjnego dozowania wody.
+Idealna dla początkujących i zaawansowanych hodowców mrówek.
+</p>
+
+<div class="price">
+5,00 zł
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Mieszanka ziaren dla Messor barbarus
+</h3>
+
+<p>
+Specjalna mieszanka 9 rodzajów ziaren
+dla mrówek Messor barbarus.
+Odpowiednio dobrany pokarm wspierający
+prawidłowy rozwój kolonii.
+</p>
+
+<div class="price">
+4,99 zł
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Probówki do hodowli mrówek
+</h3>
+
+<p>
+Probówki 16x100 mm do zakładania nowych kolonii.
+Idealne dla młodych królowych oraz rozwijających się kolonii mrówek.
+</p>
+
+<div class="price">
+od 9,99 zł
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Len łuskany dla mrówek
+</h3>
+
+<p>
+Naturalny pokarm dla Messor barbarus.
+Len znajduje się w wygodnej probówce PS 16x65 mm.
+</p>
+
+<div class="price">
+2,49 zł
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Formikarium Strong Ants
+</h3>
+
+<p>
+Nowoczesne formikaria akrylowe oraz drukowane w 3D.
+Przygotowane z myślą o wygodnej
+i bezpiecznej hodowli kolonii mrówek.
 </p>
 
 </div>
 
-<div class="card">
 
-<h3>Poidło dla mrówek</h3>
-
-<p>
-Stały dostęp do świeżej wody dla kolonii.
-</p>
-
-</div>
 
 <div class="card">
 
-<h3>Pokarm dla mrówek</h3>
+<h3>
+Karmidełka i poidła
+</h3>
 
 <p>
-Zbilansowany pokarm dla kolonii mrówek.
+Akcesoria drukowane w 3D
+ułatwiające codzienną opiekę nad kolonią.
 </p>
 
 </div>
@@ -118,3 +217,4 @@ Zbilansowany pokarm dla kolonii mrówek.
 
 </body>
 </html>
+
