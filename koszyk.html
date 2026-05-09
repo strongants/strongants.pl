@@ -1,26 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Koszyk - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+header{
+background:black;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:2px solid #ffd000;
+}
+
+.logo{
+font-size:34px;
+font-weight:bold;
+color:#ffd000;
 text-decoration:none;
-font-size:20px;
+}
+
+.back{
+color:white;
+text-decoration:none;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:50px 20px;
+}
+
+.title{
+font-size:48px;
+color:#ffd000;
+margin-bottom:40px;
+}
+
+.cart-box{
+background:#161616;
+border:1px solid #333;
+border-radius:20px;
+padding:25px;
+display:flex;
+gap:25px;
+align-items:center;
+margin-bottom:25px;
+}
+
+.cart-box img{
+width:140px;
+border-radius:14px;
+}
+
+.info{
+flex:1;
+}
+
+.info h2{
+margin:0 0 10px 0;
+color:#ffd000;
+}
+
+.price{
+font-size:28px;
+font-weight:bold;
+margin-top:15px;
 }
 
 .remove{
-margin-top:10px;
-display:inline-block;
-color:#ff5a5a;
+color:#ff5c5c;
 text-decoration:none;
+display:inline-block;
+margin-top:10px;
 }
 
-@media(max-width:900px){
-
-.cart{
-grid-template-columns:1fr;
+.summary{
+background:#161616;
+border:1px solid #333;
+border-radius:20px;
+padding:30px;
+margin-top:40px;
 }
 
-.product{
+.summary h3{
+margin-top:0;
+color:#ffd000;
+font-size:32px;
+}
+
+.total{
+font-size:38px;
+font-weight:bold;
+margin:30px 0;
+}
+
+.checkout{
+display:block;
+text-align:center;
+padding:18px;
+background:#ffd000;
+color:black;
+font-weight:bold;
+text-decoration:none;
+border-radius:14px;
+font-size:20px;
+}
+
+@media(max-width:800px){
+
+.cart-box{
 flex-direction:column;
 align-items:flex-start;
 }
 
-.product img{
+.cart-box img{
 width:100%;
 }
 
@@ -39,7 +146,7 @@ width:100%;
 </a>
 
 <a class="back" href="index.html">
-⬅ Powrót do sklepu
+⬅ Powrót
 </a>
 
 </header>
@@ -47,25 +154,21 @@ width:100%;
 <div class="container">
 
 <h1 class="title">
-Twój koszyk
+🛒 Twój koszyk
 </h1>
 
-<div class="cart">
-
-<div class="products">
-
-<div class="product">
+<div class="cart-box">
 
 <img src="starter-kit (3).jpg">
 
-<div class="product-info">
+<div class="info">
 
-<h3>
-Strong Ants START BOX + Messor barbarus
-</h3>
+<h2>
+Strong Ants START BOX
+</h2>
 
 <p>
-Kompletny zestaw dla początkujących hodowców.
+Kompletny zestaw do hodowli mrówek.
 </p>
 
 <div class="price">
@@ -80,42 +183,14 @@ Usuń produkt
 
 </div>
 
-<div class="product">
-
-<img src="starter-kit (3).jpg">
-
-<div class="product-info">
+<div class="summary">
 
 <h3>
-Kolonia Messor barbarus
+Podsumowanie
 </h3>
 
 <p>
-Królowa + robotnice + potomstwo.
-</p>
-
-<div class="price">
-49,99 zł
-</div>
-
-<a class="remove" href="#">
-Usuń produkt
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="summary">
-
-<h2>
-Podsumowanie
-</h2>
-
-<p>
-Produkty: 2
+Produkty: 1
 </p>
 
 <p>
@@ -123,14 +198,12 @@ Wysyłka: 14,99 zł
 </p>
 
 <div class="total">
-274,97 zł
+224,98 zł
 </div>
 
-<a class="button" href="#">
+<a class="checkout" href="#">
 Przejdź do płatności
 </a>
-
-</div>
 
 </div>
 
