@@ -1,167 +1,94 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
+<div id="panel">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<h1>Panel klienta</h1>
 
-<title>Moje konto - Strong Ants</title>
+<p id="user-email"></p>
 
-<style>
+<p>
+✔ Konto aktywne
+</p>
 
-body{
-margin:0;
-font-family:Arial;
-background:#0d0d0d;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-}
-
-.box{
-background:#161616;
-padding:40px;
-border-radius:20px;
-border:1px solid #333;
-width:380px;
-}
-
-.logo{
-text-align:center;
-font-size:34px;
-font-weight:bold;
-color:#ffd000;
-margin-bottom:30px;
-}
-
-.tabs{
-display:flex;
-margin-bottom:30px;
-}
-
-.tab{
-flex:1;
-padding:15px;
-text-align:center;
-cursor:pointer;
-background:#222;
-border:none;
-color:white;
-font-weight:bold;
-}
-
-.active{
-background:#ffd000;
-color:black;
-}
-
-input{
-width:100%;
-padding:14px;
-margin-bottom:15px;
-border-radius:10px;
-border:1px solid #333;
-background:#111;
-color:white;
-box-sizing:border-box;
-}
-
-.button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:10px;
-background:#ffd000;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-}
-
-.form{
-display:none;
-}
-
-.show{
-display:block;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="box">
-
-<div class="logo">
-🐜 STRONG ANTS
-</div>
-
-<div class="tabs">
-
-<button class="tab active" onclick="showLogin()">
-Zaloguj się
-</button>
-
-<button class="tab" onclick="showRegister()">
-Zarejestruj się
-</button>
-
-</div>
-
-<div id="login" class="form show">
-
-<input type="email" placeholder="Adres e-mail">
-
-<input type="password" placeholder="Hasło">
-
-<button class="button">
-Zaloguj się
-</button>
-
-</div>
-
-<div id="register" class="form">
-
-<input type="text" placeholder="Imię">
-
-<input type="email" placeholder="Adres e-mail">
-
-<input type="password" placeholder="Hasło">
-
-<button class="button">
-Utwórz konto
+<button onclick="logout()">
+Wyloguj się
 </button>
 
 </div>
 
 </div>
 
-<script>
+<script type="module">
 
-function showLogin(){
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-document.getElementById('login').classList.add('show');
-document.getElementById('register').classList.remove('show');
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-document.querySelectorAll('.tab')[0].classList.add('active');
-document.querySelectorAll('.tab')[1].classList.remove('active');
+const firebaseConfig = {
+apiKey: "AIzaSyCVDfVFPZ0LVU1mwR9IQU21FtlQlJPwpwE",
+authDomain: "strong-ants.firebaseapp.com",
+projectId: "strong-ants",
+storageBucket: "strong-ants.firebasestorage.app",
+messagingSenderId: "673947229704",
+appId: "1:673947229704:web:70e5d7b5b682469b013bbd",
+measurementId: "G-S3QN3G4L41"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+window.register = function(){
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth,email,password)
+.then(() => {
+alert("Konto utworzone!");
+})
+.catch((error) => {
+alert(error.message);
+});
 
 }
 
-function showRegister(){
+window.login = function(){
 
-document.getElementById('register').classList.add('show');
-document.getElementById('login').classList.remove('show');
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
 
-document.querySelectorAll('.tab')[1].classList.add('active');
-document.querySelectorAll('.tab')[0].classList.remove('active');
+signInWithEmailAndPassword(auth,email,password)
+.then(() => {
+alert("Zalogowano!");
+})
+.catch((error) => {
+alert(error.message);
+});
 
 }
 
-</script>
+window.logout = function(){
 
-</body>
-</html>
+signOut(auth);
+
+}
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+document.getElementById("auth").style.display="none";
+document.getElementById("panel").style.display="block";
+
+document.getElementById("user-email").innerText =
+"Zalogowano jako: " + user.email;
+
+}else{
+
+document.getElementById("auth").style.display="block";
