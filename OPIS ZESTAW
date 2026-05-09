@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Strong Ants START BOX</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0d0d0d;
+  color:white;
+  line-height:1.8;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1{
+  color:#ffd000;
+  font-size:52px;
+}
+
+h2{
+  color:#ffd000;
+  margin-top:50px;
+}
+
+.product-image{
+  width:100%;
+  max-width:500px;
+  border-radius:20px;
+  margin:30px 0;
+}
+
+.box{
+  background:#161616;
+  border:1px solid #333;
+  border-radius:20px;
+  padding:30px;
+  margin-top:25px;
+}
+
+.price{
+  font-size:42px;
+  color:#ffd000;
+  font-weight:bold;
+  margin-top:30px;
+}
+
+.button{
+  display:inline-block;
+  margin-top:30px;
+  background:#ffd000;
+  color:black;
+  padding:18px 40px;
+  border-radius:14px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.button:hover{
+  opacity:0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+🐜 Strong Ants START BOX
+</h1>
+
+<p>
+Kompletny zestaw do hodowli mrówek Messor barbarus.
+Idealny dla początkujących hodowców.
+</p>
+
+<img class="product-image"
+src="starter-kit (3).jpg">
+
+<div class="price">
+209,99 zł
+</div>
+
+<a class="button"
+href="https://buy.stripe.com/test_eVqcN52IN59s9PXb1a77O00"
+target="_blank">
+
+Zamów teraz
+
+</a>
+
+<div class="box">
+
+<h2>📦 Co znajduje się w zestawie?</h2>
+
+<p>
+✔ Kolonia Messor barbarus<br>
+✔ Formikarium Strong Ants<br>
+✔ Pokarm dla kolonii<br>
+✔ Akcesoria hodowlane<br>
+✔ Dekoracje i podłoża<br>
+✔ Talk antyucieczkowy
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>🐜 Kolonia Messor barbarus</h2>
+
+<p>
+Królowa + około 15 robotnic + potomstwo.
+Jeden z najlepszych gatunków dla początkujących hodowców.
+Spokojne, aktywne i fascynujące w obserwacji mrówki.
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>🏠 Formikarium Strong Ants</h2>
+
+<p>
+Nowoczesne formikarium przygotowane z myślą
+o bezpiecznej i wygodnej hodowli.
+Idealne dla młodej rozwijającej się kolonii.
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>🍽️ Karmienie kolonii</h2>
+
+<p>
+Podstawą diety Messor barbarus są:
+✔ nasiona
+✔ owady karmowe
+
+Kolonia powinna mieć stały dostęp do ziaren.
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>⭐ Dlaczego warto?</h2>
+
+<p>
+✔ Kompletny zestaw gotowy do użycia<br>
+✔ Idealny dla początkujących<br>
+✔ Bezpieczna wysyłka kolonii<br>
+✔ Fascynujące hobby dla dzieci i dorosłych
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
