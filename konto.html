@@ -1,4 +1,11 @@
-<body>
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Moje konto - Strong Ants</title>
 
 <style>
 
@@ -66,22 +73,9 @@ align-items:center;
 gap:15px;
 }
 
-.avatar{
-width:60px;
-height:60px;
-background:#ffd000;
-color:black;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-font-weight:bold;
-border-radius:50%;
-}
-
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:25px;
 margin-top:30px;
 }
@@ -96,13 +90,6 @@ border:1px solid #333;
 .card h3{
 color:#ffd000;
 margin-top:0;
-}
-
-.order{
-background:#1b1b1b;
-padding:15px;
-border-radius:12px;
-margin-top:15px;
 }
 
 .button{
@@ -121,7 +108,27 @@ color:#00ff73;
 font-weight:bold;
 }
 
+input{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:none;
+background:#222;
+color:white;
+font-size:16px;
+box-sizing:border-box;
+}
+
+hr{
+border:1px solid #333;
+margin:30px 0;
+}
+
 </style>
+
+</head>
+
+<body>
 
 <div class="sidebar">
 
@@ -155,13 +162,9 @@ font-weight:bold;
 
 <div class="user-box">
 
-<div class="avatar">
-M
-</div>
-
 <div>
-<b>Mateusz</b><br>
-<span class="status">✔ Konto aktywne</span>
+<b>Logowanie / Rejestracja</b><br>
+<span class="status">✔ Bezpieczne konto klienta</span>
 </div>
 
 </div>
@@ -172,38 +175,51 @@ M
 
 <div class="card">
 
-<h3>📦 Ostatnie zamówienie</h3>
+<h3>🔐 Logowanie</h3>
 
-<div class="order">
-Strong Ants START BOX + Messor barbarus
+<input type="email" placeholder="Email">
 <br><br>
-Status:
-<span class="status">W realizacji</span>
-</div>
+
+<input type="password" placeholder="Hasło">
+<br><br>
 
 <a class="button" href="#">
-Szczegóły zamówienia
+Zaloguj się
+</a>
+
+<hr>
+
+<h3>📝 Rejestracja</h3>
+
+<input type="text" placeholder="Imię">
+<br><br>
+
+<input type="email" placeholder="Email">
+<br><br>
+
+<input type="password" placeholder="Hasło">
+<br><br>
+
+<a class="button" href="#">
+Załóż konto
 </a>
 
 </div>
 
 <div class="card">
 
-<h3>👤 Dane użytkownika</h3>
+<h3>📦 Zamówienia</h3>
 
 <p>
-Email:<br>
-strong.ants4@gmail.com
+Po zalogowaniu klient będzie mógł:
 </p>
 
 <p>
-Hasło i dane konta możesz zmienić
-w ustawieniach konta.
+✔ sprawdzić status zamówienia<br>
+✔ zobaczyć historię zakupów<br>
+✔ śledzić przesyłki<br>
+✔ zapisać ulubione produkty
 </p>
-
-<a class="button" href="#">
-Edytuj dane
-</a>
 
 </div>
 
@@ -212,14 +228,14 @@ Edytuj dane
 <h3>🐜 Centrum hodowcy</h3>
 
 <p>
-Tutaj w przyszłości możesz dodać:
+Tutaj możesz w przyszłości dodać:
 </p>
 
 <p>
-✔ poradniki<br>
-✔ historię zamówień<br>
-✔ status przesyłek<br>
-✔ zapisane produkty
+✔ poradniki hodowli<br>
+✔ instrukcje dla gatunków<br>
+✔ system punktów<br>
+✔ rabaty dla klientów
 </p>
 
 </div>
@@ -229,3 +245,4 @@ Tutaj w przyszłości możesz dodać:
 </div>
 
 </body>
+</html>
