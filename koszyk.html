@@ -1,9 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +18,7 @@ color:white;
 
 header{
 background:black;
-padding:20px 40px;
+padding:20px;
 border-bottom:2px solid #ffd000;
 }
 
@@ -28,177 +26,73 @@ border-bottom:2px solid #ffd000;
 font-size:32px;
 font-weight:bold;
 color:#ffd000;
-text-decoration:none;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:50px 20px;
+.section{
+padding:60px 10%;
 }
 
 .title{
-font-size:60px;
+font-size:42px;
 color:#ffd000;
 margin-bottom:40px;
 }
 
-.cart{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:30px;
-}
-
-.product-box{
+.product{
 background:#161616;
 border:1px solid #333;
-border-radius:25px;
-padding:25px;
+border-radius:20px;
+padding:20px;
+margin-bottom:20px;
 display:flex;
-gap:25px;
-align-items:flex-start;
+gap:20px;
+align-items:center;
 }
 
-.product-box img{
-width:180px;
-border-radius:18px;
+.product img{
+width:120px;
+height:120px;
+object-fit:contain;
+background:white;
+border-radius:15px;
 }
 
 .product-info{
 flex:1;
 }
 
-.product-title{
-font-size:42px;
-font-weight:bold;
+.product h3{
 color:#ffd000;
-margin-bottom:15px;
-}
-
-.product-desc{
-color:#ccc;
-font-size:18px;
-line-height:1.6;
-margin-bottom:20px;
+margin:0 0 10px;
 }
 
 .price{
-font-size:42px;
-font-weight:bold;
-margin-bottom:20px;
-}
-
-.quantity-box{
-display:flex;
-align-items:center;
-gap:20px;
-margin-bottom:20px;
-}
-
-.quantity-box button{
-width:45px;
-height:45px;
-border:none;
-border-radius:12px;
-background:#ffd000;
 font-size:28px;
 font-weight:bold;
-cursor:pointer;
-}
-
-.quantity-box span{
-font-size:28px;
-font-weight:bold;
-min-width:30px;
-text-align:center;
+color:#ffd000;
+margin-top:10px;
 }
 
 .remove{
-color:#ff5a5a;
-text-decoration:none;
-font-size:18px;
-}
-
-.summary{
-background:#161616;
-border:1px solid #333;
-border-radius:25px;
-padding:35px;
-height:fit-content;
-}
-
-.summary h2{
-font-size:42px;
-color:#ffd000;
-margin-top:0;
-margin-bottom:35px;
-}
-
-.summary-row{
-display:flex;
-justify-content:space-between;
-margin-bottom:20px;
-font-size:22px;
+background:red;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+color:white;
+cursor:pointer;
+font-weight:bold;
 }
 
 .total{
-font-size:52px;
+font-size:36px;
+color:#ffd000;
+margin-top:40px;
 font-weight:bold;
-margin:40px 0;
 }
 
-.checkout{
-display:block;
-width:100%;
-padding:22px;
-background:#ffd000;
-color:black;
-text-align:center;
+.empty{
 font-size:24px;
-font-weight:bold;
-border-radius:16px;
-text-decoration:none;
-}
-
-.checkout:hover{
-opacity:0.9;
-}
-
-.back{
-display:inline-block;
-margin-top:25px;
-color:#ffd000;
-text-decoration:none;
-font-size:18px;
-}
-
-@media(max-width:900px){
-
-.cart{
-grid-template-columns:1fr;
-}
-
-.product-box{
-flex-direction:column;
-align-items:flex-start;
-}
-
-.product-box img{
-width:100%;
-}
-
-.title{
-font-size:42px;
-}
-
-.product-title{
-font-size:30px;
-}
-
-.total{
-font-size:40px;
-}
-
+color:#999;
 }
 
 </style>
@@ -208,135 +102,102 @@ font-size:40px;
 <body>
 
 <header>
-
-<a class="logo" href="index.html">
+<div class="logo">
 🐜 STRONG ANTS
-</a>
-
+</div>
 </header>
 
-<div class="container">
+<section class="section">
 
 <h1 class="title">
 🛒 Twój koszyk
 </h1>
 
-<div class="cart">
+<div id="koszyk"></div>
 
-<div class="left">
-
-<div class="product-box">
-
-<img src="starter-kit (3).jpg">
-
-<div class="product-info">
-
-<div class="product-title">
-Strong Ants START BOX
+<div class="total" id="suma">
+Suma: 0 zł
 </div>
 
-<div class="product-desc">
-Kompletny zestaw do hodowli mrówek dla początkujących hodowców.
-W zestawie znajduje się kolonia Messor barbarus,
-formikarium, dekoracje, pokarm oraz akcesoria.
-</div>
-
-<div class="price">
-209,99 zł
-</div>
-
-<div class="quantity-box">
-
-<button onclick="changeQty(-1)">
-−
-</button>
-
-<span id="qty">
-1
-</span>
-
-<button onclick="changeQty(1)">
-+
-</button>
-
-</div>
-
-<a class="remove" href="#">
-Usuń produkt
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="summary">
-
-<h2>
-Podsumowanie
-</h2>
-
-<div class="summary-row">
-<span>Produkty:</span>
-<span id="products-price">
-209,99 zł
-</span>
-</div>
-
-<div class="summary-row">
-<span>Dostawa:</span>
-<span>
-14,99 zł
-</span>
-</div>
-
-<div class="total" id="total-price">
-224,98 zł
-</div>
-
-<a class="checkout" href="checkout.html">
-Przejdź do płatności
-</a>
-
-<a class="back" href="index.html">
-← Powrót do sklepu
-</a>
-
-</div>
-
-</div>
-
-</div>
+</section>
 
 <script>
 
-let qty = 1;
-let productPrice = 209.99;
-let shipping = 14.99;
+function wyswietlKoszyk(){
 
-function changeQty(change){
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
-qty += change;
+let kontener = document.getElementById("koszyk");
 
-if(qty < 1){
-qty = 1;
+let suma = 0;
+
+if(koszyk.length === 0){
+
+kontener.innerHTML = `
+<div class="empty">
+Koszyk jest pusty.
+</div>
+`;
+
+document.getElementById("suma").style.display = "none";
+
+return;
 }
 
-document.getElementById("qty").innerText = qty;
+kontener.innerHTML = "";
 
-let productsTotal = (qty * productPrice);
-let finalTotal = (productsTotal + shipping);
+koszyk.forEach((produkt,index)=>{
 
-document.getElementById("products-price").innerText =
-productsTotal.toFixed(2).replace(".", ",") + " zł";
+suma += produkt.cena;
 
-document.getElementById("total-price").innerText =
-finalTotal.toFixed(2).replace(".", ",") + " zł";
+kontener.innerHTML += `
+
+<div class="product">
+
+<img src="${produkt.zdjecie}">
+
+<div class="product-info">
+
+<h3>${produkt.nazwa}</h3>
+
+<div class="price">
+${produkt.cena} zł
+</div>
+
+</div>
+
+<button class="remove"
+onclick="usunProdukt(${index})">
+Usuń
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("suma").innerText =
+"Suma: " + suma.toFixed(2) + " zł";
 
 }
+
+function usunProdukt(index){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.splice(index,1);
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+wyswietlKoszyk();
+
+}
+
+wyswietlKoszyk();
 
 </script>
 
 </body>
 </html>
+
