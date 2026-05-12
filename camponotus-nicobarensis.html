@@ -78,6 +78,11 @@ font-weight:bold;
 border-radius:14px;
 border:none;
 cursor:pointer;
+transition:0.2s;
+}
+
+.button:hover{
+transform:scale(1.03);
 }
 
 .features{
@@ -107,6 +112,18 @@ text-decoration:none;
 color:white;
 text-decoration:none;
 font-size:22px;
+}
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:38px;
+}
+
 }
 
 </style>
@@ -173,7 +190,9 @@ Królowa + 10-20 robotnic + potomstwo
 </div>
 
 <button class="button" onclick="dodajDoKoszyka()">
+
 🛒 Dodaj do koszyka
+
 </button>
 
 <div class="features">
@@ -181,7 +200,8 @@ Królowa + 10-20 robotnic + potomstwo
 ✔ szybki rozwój kolonii<br>
 ✔ aktywny gatunek<br>
 ✔ ciekawa obserwacja<br>
-✔ zdrowa królowa i robotnice
+✔ zdrowa królowa i robotnice<br>
+✔ bezpieczna wysyłka
 
 </div>
 
@@ -204,11 +224,14 @@ function dodajDoKoszyka(){
 
 let select = document.getElementById("koloniaSelect");
 
-let nazwa = "Camponotus nicobarensis - " + select.options[select.selectedIndex].text;
+let nazwa =
+document.querySelector(".title").innerText.replace("🐜 ","")
++ " - " +
+select.options[select.selectedIndex].text;
 
 let cena = parseFloat(select.value);
 
-let obraz = "mrowki-jpg.png";
+let obraz = document.querySelector(".image img").getAttribute("src");
 
 let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
