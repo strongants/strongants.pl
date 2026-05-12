@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -35,6 +37,7 @@ padding:60px 10%;
 font-size:42px;
 color:#ffd000;
 margin-bottom:40px;
+text-align:center;
 }
 
 .products{
@@ -48,21 +51,43 @@ background:#161616;
 padding:30px;
 border-radius:20px;
 border:1px solid #333;
+transition:all 0.3s ease;
+cursor:pointer;
+overflow:hidden;
 }
+
+.card:hover{
+transform:scale(1.03) translateY(-5px);
+border-color:#ffd000;
+box-shadow:0 0 25px rgba(255,208,0,0.25);
+}
+
 .card img{
-  .mrowki-img{
-object-fit:cover !important;
-}
 width:100%;
 height:220px;
-object-fit:contain;
+object-fit:cover;
 background:white;
 border-radius:15px;
 margin-bottom:15px;
+transition:0.3s;
 }
+
+.card:hover img{
+transform:scale(1.02);
+}
+
+.mrowki-img{
+object-fit:cover !important;
+}
+
 .card h3{
 font-size:28px;
 color:#ffd000;
+}
+
+.card p{
+line-height:1.6;
+color:#ddd;
 }
 
 .button{
@@ -74,6 +99,22 @@ color:black;
 text-decoration:none;
 font-weight:bold;
 border-radius:12px;
+}
+
+@media (max-width:768px){
+
+.section{
+padding:40px 20px;
+}
+
+.title{
+font-size:36px;
+}
+
+.card{
+padding:20px;
+}
+
 }
 
 </style>
@@ -91,8 +132,12 @@ border-radius:12px;
 
 <div class="products">
 
-<div class="card">
+
+
+<div class="card" onclick="window.location.href='mrowki.html'">
+
 <img class="mrowki-img" src="mrowki-jpg.png" alt="Mrówki">
+
 <h3>🐜 Mrówki</h3>
 
 <p>
@@ -105,8 +150,12 @@ Zobacz mrówki
 
 </div>
 
-<div class="card">
-  <img src="akcesoria.jpg" alt="Akcesoria">
+
+
+<div class="card" onclick="window.location.href='akcesoria.html'">
+
+<img src="akcesoria.jpg" alt="Akcesoria">
+
 <h3>🧰 Akcesoria</h3>
 
 <p>
@@ -119,8 +168,11 @@ Zobacz akcesoria
 
 </div>
 
-<div class="card">
-  <img src="dekoracje.jpg" alt="Dekoracje">
+
+
+<div class="card" onclick="window.location.href='dekoracje.html'">
+
+<img src="dekoracje.jpg" alt="Dekoracje">
 
 <h3>🏜️ Dekoracje</h3>
 
@@ -133,7 +185,10 @@ Zobacz dekoracje
 </a>
 
 </div>
-<div class="card">
+
+
+
+<div class="card" onclick="window.location.href='pokarmy.html'">
 
 <img src="pokarmy.jpg" alt="Pokarmy">
 
@@ -149,9 +204,12 @@ Zobacz pokarmy
 
 </div>
 
-<div class="card">
+
+
+<div class="card" onclick="window.location.href='formikaria.html'">
 
 <img src="formikaria.jpg" alt="Formikaria">
+
 <h3>🏠 Formikaria</h3>
 
 <p>
@@ -163,7 +221,10 @@ Zobacz formikaria
 </a>
 
 </div>
-  <div class="card">
+
+
+
+<div class="card" onclick="window.location.href='zestawy-startowe.html'">
 
 <img src="zestawy-startowe.jpg" alt="Zestawy startowe">
 
@@ -179,6 +240,9 @@ Zobacz zestawy
 </a>
 
 </div>
+
+
+
 </div>
 
 </section>
