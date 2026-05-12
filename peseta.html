@@ -77,6 +77,14 @@ font-size:22px;
 font-weight:bold;
 border-radius:14px;
 text-decoration:none;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.button:hover{
+transform:scale(1.03);
+box-shadow:0 0 20px rgba(255,208,0,0.3);
 }
 
 .features{
@@ -150,8 +158,8 @@ Wybierz długość:
 <button class="button"
 
 onclick="dodajDoKoszyka(
-'Pęseta do hodowli mrówek ' + document.getElementById('rozmiar').value,
-parseFloat(document.getElementById('cena').innerText.replace(' zł','').replace(',','.')),
+'Pęseta do hodowli mrówek ' + document.getElementById('sizeSelect').options[document.getElementById('sizeSelect').selectedIndex].text,
+parseFloat(document.getElementById('price').innerText.replace(' zł','').replace(',','.')),
 'zdjecie-podglad-peseta.jpg'
 )">
 
@@ -184,6 +192,8 @@ price.innerHTML = select.value.replace(".", ",") + " zł";
 }
 
 </script>
+
+<script src="cart.js"></script>
 
 </body>
 </html>
