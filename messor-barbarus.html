@@ -14,73 +14,115 @@ margin:0;
 background:#0d0d0d;
 font-family:Arial;
 color:white;
-line-height:1.8;
 }
 
-header{
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.image img{
+width:100%;
+border-radius:20px;
+background:white;
+}
+
+.title{
+font-size:52px;
+color:#ffd000;
+margin-bottom:20px;
+}
+
+.desc{
+font-size:22px;
+line-height:1.7;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.select-title{
+font-size:24px;
+margin-bottom:15px;
+}
+
+select{
+width:100%;
+padding:15px;
+font-size:20px;
+border-radius:12px;
+border:none;
+background:#1b1b1b;
+color:white;
+margin-bottom:30px;
+}
+
+.price{
+font-size:46px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.button{
+display:inline-block;
+padding:18px 35px;
+background:#ffd000;
+color:black;
+font-size:22px;
+font-weight:bold;
+border-radius:14px;
+border:none;
+cursor:pointer;
+}
+
+.button:hover{
+transform:scale(1.03);
+}
+
+.features{
+margin-top:30px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+}
+
+.topbar{
 background:black;
 padding:20px;
 border-bottom:2px solid #ffd000;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .logo{
 font-size:32px;
 font-weight:bold;
 color:#ffd000;
+text-decoration:none;
 }
+
+.koszyk{
+color:white;
+text-decoration:none;
+font-size:22px;
+}
+
+@media(max-width:900px){
 
 .container{
-max-width:1200px;
-margin:auto;
-padding:50px 20px;
+grid-template-columns:1fr;
 }
 
-.product{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-gap:50px;
-align-items:start;
+.title{
+font-size:38px;
 }
 
-.product img{
-width:100%;
-border-radius:25px;
-border:1px solid #333;
-}
-
-h1{
-font-size:52px;
-color:#ffd000;
-}
-
-.price{
-font-size:42px;
-font-weight:bold;
-color:#ffd000;
-margin:30px 0;
-}
-
-.button{
-display:inline-block;
-padding:18px 38px;
-background:#ffd000;
-color:black;
-font-weight:bold;
-text-decoration:none;
-border-radius:14px;
-margin-top:20px;
-}
-
-.box{
-margin-top:40px;
-background:#161616;
-padding:30px;
-border-radius:20px;
-border:1px solid #333;
-}
-
-.box h2{
-color:#ffd000;
 }
 
 </style>
@@ -89,111 +131,131 @@ color:#ffd000;
 
 <body>
 
-<header>
-<div class="logo">🐜 STRONG ANTS</div>
-</header>
+<div class="topbar">
 
-<div class="container">
+<a href="index.html" class="logo">
+STRONG ANTS
+</a>
 
-<div class="product">
-
-<div>
-
-<img src="starter-kit (3).jpg"
-alt="Messor barbarus">
-
-</div>
-
-<div>
-
-<h1>
-Messor barbarus
-</h1>
-
-<p>
-Kolonia mrówek – królowa + robotnice + potomstwo + pokarm na start.
-</p>
-
-<div class="price">
-59,99 zł
-</div>
-
-<a class="button"
-href="https://buy.stripe.com/test_eVqcN52IN59s9PXb1a77O00"
-target="_blank">
-
-Zamów teraz
-
+<a href="koszyk.html" class="koszyk">
+🛒 Koszyk (<span id="koszyk-licznik">0</span>)
 </a>
 
 </div>
 
+<div class="container">
+
+<div class="image">
+
+<img src="mrowki-jpg.png" alt="Messor barbarus">
+
 </div>
 
-<div class="box">
+<div>
 
-<h2>
-📦 W skład zestawu wchodzi
-</h2>
+<h1 class="title">
+🐜 Messor barbarus
+</h1>
 
-<p>
-✔️ 1 zapłodniona królowa<br>
-✔️ od 5 do 10 robotnic<br>
-✔️ potomstwo (jaja / larwy / poczwarki)<br>
-✔️ specjalna mieszanka ziaren – 2 ml
+<p class="desc">
+
+Idealny gatunek dla początkujących hodowców mrówek.
+Spokojny, łatwy w hodowli oraz bardzo ciekawy podczas obserwacji.
+
 </p>
 
+<div class="select-title">
+Wybierz wielkość kolonii:
 </div>
 
-<div class="box">
+<select id="koloniaSelect" onchange="zmienCene()">
 
-<h2>
-🌾 O gatunku Messor barbarus
-</h2>
+<option value="69.99">
+Królowa + 1-5 robotnic + potomstwo
+</option>
 
-<p>
-• gatunek nasionożerny<br>
-• tworzy magazyny nasion<br>
-• produkuje chleb mrówczy<br>
-• łatwy w hodowli<br>
-• spokojny i mało agresywny
-</p>
+<option value="99.99">
+Królowa + 5-10 robotnic + potomstwo
+</option>
 
+<option value="129.99">
+Królowa + 10-15 robotnic + potomstwo
+</option>
+
+</select>
+
+<div class="price" id="price">
+69,99 zł
 </div>
 
-<div class="box">
+<button class="button" onclick="dodajDoKoszyka()">
 
-<h2>
-✅ Dlaczego warto
-</h2>
+🛒 Dodaj do koszyka
 
-<p>
-✔️ zdrowa i rozwijająca się kolonia<br>
-✔️ idealna dla początkujących<br>
-✔️ gwarancja przyjęcia<br>
-✔️ bezpieczna wysyłka
-</p>
+</button>
 
-</div>
+<div class="features">
 
-<div class="box">
-
-<h2>
-🤝 Strong Ants
-</h2>
-
-<p>
-Jesteśmy hodowlą Strong Ants,
-specjalizującą się w hodowli mrówek od ponad 9 lat.
-
-Zapewniamy wsparcie przed oraz po zakupie.
-Chętnie pomagamy w zakresie hodowli,
-karmienia oraz rozwoju kolonii.
-</p>
+✔ idealny gatunek dla początkujących<br>
+✔ łatwa hodowla<br>
+✔ aktywna kolonia<br>
+✔ zdrowa królowa i robotnice<br>
+✔ bezpieczna wysyłka
 
 </div>
 
 </div>
+
+</div>
+
+<script>
+
+function zmienCene(){
+
+let select = document.getElementById("koloniaSelect");
+
+document.getElementById("price").innerText =
+select.value.replace(".", ",") + " zł";
+
+}
+
+function dodajDoKoszyka(){
+
+let select = document.getElementById("koloniaSelect");
+
+let nazwa = "Messor barbarus - " + select.options[select.selectedIndex].text;
+
+let cena = parseFloat(select.value);
+
+let obraz = "mrowki-jpg.png";
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:nazwa,
+cena:cena,
+obraz:obraz
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+updateKoszykLicznik();
+
+alert("Produkt dodany do koszyka");
+
+}
+
+function updateKoszykLicznik(){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+document.getElementById("koszyk-licznik").innerText = koszyk.length;
+
+}
+
+updateKoszykLicznik();
+
+</script>
 
 </body>
 </html>
