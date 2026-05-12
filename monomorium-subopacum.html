@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Monomorium subopacum - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.image img{
+width:100%;
+border-radius:20px;
+background:white;
+}
+
+.title{
+font-size:52px;
+color:#ffd000;
+margin-bottom:20px;
+}
+
+.desc{
+font-size:22px;
+line-height:1.7;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.select-title{
+font-size:24px;
+margin-bottom:15px;
+}
+
+select{
+width:100%;
+padding:15px;
+font-size:20px;
+border-radius:12px;
+border:none;
+background:#1b1b1b;
+color:white;
+margin-bottom:30px;
+}
+
+.price{
+font-size:46px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.button{
+display:inline-block;
+padding:18px 35px;
+background:#ffd000;
+color:black;
+font-size:22px;
+font-weight:bold;
+border-radius:14px;
+border:none;
+cursor:pointer;
+}
+
+.features{
+margin-top:30px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+}
+
+.topbar{
+background:black;
+padding:20px;
+border-bottom:2px solid #ffd000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ffd000;
+text-decoration:none;
+}
+
+.koszyk{
+color:white;
+text-decoration:none;
+font-size:22px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a href="index.html" class="logo">
+STRONG ANTS
+</a>
+
+<a href="koszyk.html" class="koszyk">
+🛒 Koszyk (<span id="koszyk-licznik">0</span>)
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="image">
+
+<img src="monomorium-subopacum.jpg" alt="Monomorium subopacum">
+
+</div>
+
+<div>
+
+<h1 class="title">
+🐜 Monomorium subopacum
+</h1>
+
+<p class="desc">
+
+Bardzo aktywny gatunek mrówek o szybkim rozwoju.
+Idealny do obserwacji dużej aktywności kolonii.
+
+</p>
+
+<div class="select-title">
+Wybierz wielkość kolonii:
+</div>
+
+<select id="koloniaSelect" onchange="zmienCene()">
+
+<option value="36.99">
+Królowa + 10-20 robotnic + potomstwo
+</option>
+
+<option value="54.99">
+Królowa + 20-40 robotnic + potomstwo
+</option>
+
+<option value="79.99">
+Królowa + 40-60 robotnic + potomstwo
+</option>
+
+</select>
+
+<div class="price" id="price">
+36,99 zł
+</div>
+
+<button class="button" onclick="dodajDoKoszyka()">
+🛒 Dodaj do koszyka
+</button>
+
+<div class="features">
+
+✔ bardzo aktywny gatunek<br>
+✔ szybki rozwój kolonii<br>
+✔ idealny do obserwacji<br>
+✔ zdrowa kolonia
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function zmienCene(){
+
+let select = document.getElementById("koloniaSelect");
+
+document.getElementById("price").innerText =
+select.value.replace(".", ",") + " zł";
+
+}
+
+function dodajDoKoszyka(){
+
+let select = document.getElementById("koloniaSelect");
+
+let nazwa = "Monomorium subopacum - " + select.options[select.selectedIndex].text;
+
+let cena = parseFloat(select.value);
+
+let obraz = "monomorium-subopacum.jpg";
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:nazwa,
+cena:cena,
+obraz:obraz
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+updateKoszykLicznik();
+
+alert("Produkt dodany do koszyka");
+
+}
+
+function updateKoszykLicznik(){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+document.getElementById("koszyk-licznik").innerText = koszyk.length;
+
+}
+
+updateKoszykLicznik();
+
+</script>
+
+</body>
+</html>
