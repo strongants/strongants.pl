@@ -180,38 +180,25 @@ Naturalny pokarm wspierający prawidłowy rozwój kolonii.
 ✔ wygodne opakowanie
 </p>
 
-<div class="price" id="ziarna-price">
-2,50 zł
+<div class="price">
+od 2,50 zł
 </div>
 
-<select id="ziarnaSelect"
-onchange="zmienCeneZiaren()">
+<a class="button"
+href="ziarna-messor.html">
 
-<option value="2.50">
-5 ml
-</option>
+Zobacz ofertę
 
-<option value="4.99">
-15 ml
-</option>
-
-<option value="8.99">
-50 ml
-</option>
-
-</select>
-
-<button class="button"
-onclick="dodajZiarnaDoKoszyka()">
-
-🛒 Dodaj do koszyka
-
-</button>
+</a>
 
 </div>
+
+
 
 
 <div class="card">
+
+<img src="miod-dla-mrowek.jpg" alt="Naturalny miód dla mrówek">
 
 <h3>
 🍯 Naturalny miód dla mrówek
@@ -244,7 +231,10 @@ onclick="dodajMiodDoKoszyka()">
 
 
 
+
 <div class="card">
+
+<img src="karaczany-tureckie.jpg" alt="Karaczany tureckie">
 
 <h3>
 🪳 Karaczany tureckie
@@ -294,7 +284,10 @@ onclick="dodajKaraczanyDoKoszyka()">
 
 
 
+
 <div class="card">
+
+<img src="zestaw-ziaren.jpg" alt="Zestaw ziaren dla Messor barbarus">
 
 <h3>
 🌾 Zestaw ziaren dla Messor barbarus
@@ -333,40 +326,12 @@ onclick="dodajZestawZiarenDoKoszyka()">
 
 <script>
 
-function zmienCeneZiaren(){
-
-let select = document.getElementById("ziarnaSelect");
-
-document.getElementById("ziarna-price").innerHTML =
-select.value.replace(".", ",") + " zł";
-
-}
-
 function zmienCeneKaraczanow(){
 
 let select = document.getElementById("karaczanySelect");
 
 document.getElementById("karaczany-price").innerHTML =
 select.value.replace(".", ",") + " zł";
-
-}
-
-function dodajZiarnaDoKoszyka(){
-
-let select = document.getElementById("ziarnaSelect");
-
-let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
-
-koszyk.push({
-nazwa:"Mieszanka ziaren dla Messor barbarus - " +
-select.options[select.selectedIndex].text,
-cena:parseFloat(select.value),
-obraz:"ziarna-messor.jpg"
-});
-
-localStorage.setItem("koszyk", JSON.stringify(koszyk));
-
-alert("Produkt dodany do koszyka 🛒");
 
 }
 
