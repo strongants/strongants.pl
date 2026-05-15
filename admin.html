@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+if(localStorage.getItem("stanyMagazynowe")){
+
+const zapisane =
+JSON.parse(localStorage.getItem("stanyMagazynowe"));
+
+Object.assign(STANY,zapisane);
+
+}
+
+const panel =
+document.getElementById("panel");
+
+Object.keys(STANY).forEach((produkt)=>{
+
+panel.innerHTML += `
+
+<div class="box">
+
+<label>
+${produkt}
+</label>
+
+<input
+id="${produkt}"
+type="number"
+value="${STANY[produkt]}"
+min="0">
+
+<button onclick="zapiszStan('${produkt}')">
+Zapisz stan
+</button>
+
+<div class="status"
+id="status-${produkt}">
+</div>
+
+</div>
+
+`;
+
+});
+
+function zapiszStan(produkt){
+
+let wartosc = parseInt(
+document.getElementById(produkt).value
+);
+
+if(isNaN(wartosc)){
+wartosc = 0;
+}
+
+STANY[produkt] = wartosc;
+
+localStorage.setItem(
+"stanyMagazynowe",
+JSON.stringify(STANY)
+);
+
+document.getElementById(
+"status-" + produkt
+).innerHTML = "✔ Zapisano";
+
+}
+
+</script>
+
+</body>
+</html>
