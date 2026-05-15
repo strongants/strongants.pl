@@ -116,6 +116,39 @@ border-radius:12px;
 text-decoration:none;
 }
 
+/* NOWE */
+
+.quantity-box{
+display:flex;
+align-items:center;
+gap:12px;
+margin-top:15px;
+}
+
+.quantity-box button{
+width:36px;
+height:36px;
+border:none;
+border-radius:10px;
+background:#ffd000;
+color:black;
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
+}
+
+.quantity-box button:hover{
+transform:scale(1.08);
+}
+
+.quantity-number{
+font-size:22px;
+font-weight:bold;
+min-width:30px;
+text-align:center;
+}
+
 @media(max-width:900px){
 
 .product{
@@ -182,9 +215,11 @@ Suma: 0 zł
 
 function wyswietlKoszyk(){
 
-let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
 
-let kontener = document.getElementById("koszyk");
+let kontener =
+document.getElementById("koszyk");
 
 let suma = 0;
 
@@ -205,13 +240,21 @@ kontener.innerHTML = "";
 
 koszyk.forEach((produkt,index)=>{
 
-suma += Number(produkt.cena);
+if(!produkt.ilosc){
+produkt.ilosc = 1;
+}
+
+let cenaProduktu =
+Number(produkt.cena) * produkt.ilosc;
+
+suma += cenaProduktu;
 
 kontener.innerHTML += `
 
 <div class="product">
 
-<img src="${produkt.obraz}" alt="${produkt.nazwa}"
+<img src="${produkt.obraz}"
+alt="${produkt.nazwa}"
 onerror="this.src='logo (2).png'">
 
 <div class="product-info">
@@ -219,14 +262,32 @@ onerror="this.src='logo (2).png'">
 <h3>${produkt.nazwa}</h3>
 
 <div class="price">
-${Number(produkt.cena).toFixed(2)} zł
+${cenaProduktu.toFixed(2)} zł
+</div>
+
+<div class="quantity-box">
+
+<button onclick="zmniejszIlosc(${index})">
+-
+</button>
+
+<div class="quantity-number">
+${produkt.ilosc}
+</div>
+
+<button onclick="zwiekszIlosc(${index})">
++
+</button>
+
 </div>
 
 </div>
 
 <button class="remove"
 onclick="usunProdukt(${index})">
+
 Usuń
+
 </button>
 
 </div>
@@ -235,18 +296,63 @@ Usuń
 
 });
 
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
+
 document.getElementById("suma").innerText =
 "Suma: " + suma.toFixed(2) + " zł";
 
 }
 
+function zwiekszIlosc(index){
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk[index].ilosc++;
+
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
+
+wyswietlKoszyk();
+
+}
+
+function zmniejszIlosc(index){
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+if(koszyk[index].ilosc > 1){
+
+koszyk[index].ilosc--;
+
+}
+
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
+
+wyswietlKoszyk();
+
+}
+
 function usunProdukt(index){
 
-let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
 
 koszyk.splice(index,1);
 
-localStorage.setItem("koszyk", JSON.stringify(koszyk));
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
 
 wyswietlKoszyk();
 
