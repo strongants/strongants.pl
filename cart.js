@@ -1,11 +1,11 @@
-function dodajDoKoszyka(nazwa, cena, zdjecie){
+function dodajDoKoszyka(nazwa, cena, obraz){
 
 let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
 koszyk.push({
 nazwa: nazwa,
 cena: cena,
-zdjecie: zdjecie
+obraz: obraz
 });
 
 localStorage.setItem("koszyk", JSON.stringify(koszyk));
