@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -26,6 +27,9 @@ border-bottom:2px solid #ffd000;
 font-size:32px;
 font-weight:bold;
 color:#ffd000;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .section{
@@ -55,6 +59,7 @@ height:120px;
 object-fit:contain;
 background:white;
 border-radius:15px;
+padding:10px;
 }
 
 .product-info{
@@ -102,9 +107,18 @@ color:#999;
 <body>
 
 <header>
+
 <div class="logo">
-🐜 STRONG ANTS
+
+<img src="logo (2).png"
+style="width:55px; height:55px; border-radius:12px;">
+
+<div>
+STRONG ANTS
 </div>
+
+</div>
+
 </header>
 
 <section class="section">
@@ -154,14 +168,14 @@ kontener.innerHTML += `
 
 <div class="product">
 
-<img src="${produkt.zdjecie}">
+<img src="${produkt.obraz}">
 
 <div class="product-info">
 
 <h3>${produkt.nazwa}</h3>
 
 <div class="price">
-${produkt.cena} zł
+${produkt.cena.toFixed(2)} zł
 </div>
 
 </div>
@@ -200,4 +214,3 @@ wyswietlKoszyk();
 
 </body>
 </html>
-
