@@ -1,37 +1,236 @@
-<div class="card">
+<!DOCTYPE html>
+<html lang="pl">
+<head>
 
-<img src="poidelko-do-hodowli-mrowek-5ml.png"
-alt="Poidełko do hodowli mrówek 5 ml">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h3>
+<title>Poidełko do hodowli mrówek - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+.topbar{
+background:black;
+padding:20px;
+border-bottom:2px solid #ffd000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ffd000;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.koszyk{
+color:white;
+text-decoration:none;
+font-size:22px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.image img{
+width:100%;
+border-radius:20px;
+background:white;
+object-fit:contain;
+padding:20px;
+box-sizing:border-box;
+}
+
+.title{
+font-size:48px;
+color:#ffd000;
+margin-bottom:20px;
+}
+
+.desc{
+font-size:22px;
+line-height:1.7;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.price{
+font-size:42px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.button{
+display:inline-block;
+padding:18px 35px;
+background:#ffd000;
+color:black;
+font-size:22px;
+font-weight:bold;
+border-radius:14px;
+text-decoration:none;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.button:hover{
+transform:scale(1.03);
+box-shadow:0 0 20px rgba(255,208,0,0.3);
+}
+
+.features{
+margin-top:30px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+}
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:38px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a href="index.html" class="logo">
+
+<img src="logo (2).png"
+style="width:55px;height:55px;border-radius:12px;">
+
+<div>
+STRONG ANTS
+</div>
+
+</a>
+
+<a href="koszyk.html" class="koszyk">
+🛒 Koszyk (<span id="koszyk-licznik">0</span>)
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="image">
+
+<img src="poidelko-do-hodowli-mrowek.png"
+alt="Poidełko do hodowli mrówek">
+
+</div>
+
+<div>
+
+<h1 class="title">
 💧 Poidełko do hodowli mrówek 5 ml
-</h3>
+</h1>
 
-<p>
-Praktyczne poidełko o pojemności 5 ml zapewniające
-stały dostęp do wody dla kolonii mrówek.
-Konstrukcja zapobiega wyciekaniu wody,
-a mrówki mogą bez problemu pobierać wodę.
-Idealne do większości hodowli formikarium.
-</p>
-
-<p>
-✔ pojemność 5 ml<br>
-✔ brak wycieków<br>
-✔ łatwe pobieranie wody przez mrówki<br>
-✔ wysokość z probówką 7 cm<br>
-✔ wielokrotnego użytku
+<p class="desc">
+Praktyczne poidełko zapewniające stały dostęp kolonii mrówek do świeżej wody.
+Specjalna konstrukcja ogranicza ryzyko wycieku,
+a mrówki mogą wygodnie pobierać wodę bez topienia się.
+Idealne wyposażenie każdego formikarium.
 </p>
 
 <div class="price">
 6,99 zł
 </div>
 
-<a href="poidelko-do-hodowli-mrowek.html"
-class="button">
+<button class="button"
+onclick="dodajDoKoszyka()">
 
-Zobacz ofertę
+🛒 Dodaj do koszyka
 
-</a>
+</button>
+
+<div class="features">
+
+✔ pojemność 5 ml<br>
+✔ wysokość z probówką około 7 cm<br>
+✔ brak wycieków<br>
+✔ łatwe pobieranie wody przez mrówki<br>
+✔ wielokrotnego użytku<br>
+✔ idealne do większości formikariów
 
 </div>
+
+</div>
+
+</div>
+
+<script>
+
+function dodajDoKoszyka(){
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:"Poidełko do hodowli mrówek 5 ml",
+cena:6.99,
+obraz:"poidelko-do-hodowli-mrowek.png"
+});
+
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
+
+updateKoszykLicznik();
+
+alert("Produkt dodany do koszyka 🛒");
+
+window.location.href = "koszyk.html";
+
+}
+
+function updateKoszykLicznik(){
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+document.getElementById(
+"koszyk-licznik"
+).innerText = koszyk.length;
+
+}
+
+updateKoszykLicznik();
+
+</script>
+
+</body>
+</html>
