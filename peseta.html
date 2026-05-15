@@ -240,22 +240,24 @@ select.options[select.selectedIndex].text;
 
 let cena = parseFloat(select.value);
 
-/* POPRAWIONE ZDJĘCIE */
+/* POPRAWNA NAZWA ZDJĘCIA */
 let obraz = "zdjecie-podglad-peseta.jpg";
 
 let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
 
 koszyk.push({
-nazwa:nazwa,
-cena:cena,
-obraz:obraz
+nazwa: nazwa,
+cena: cena,
+obraz: obraz
 });
 
 localStorage.setItem("koszyk", JSON.stringify(koszyk));
 
 updateKoszykLicznik();
 
-alert("Produkt dodany do koszyka");
+alert("Produkt dodany do koszyka 🛒");
+
+window.location.href = "koszyk.html";
 
 }
 
