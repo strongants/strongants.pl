@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html> 
 <html lang="pl">
 <head>
@@ -28,6 +26,9 @@ border-bottom:2px solid #ffd000;
 font-size:32px;
 font-weight:bold;
 color:#ffd000;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .section{
@@ -98,6 +99,18 @@ font-weight:bold;
 border-radius:12px;
 }
 
+@media(max-width:768px){
+
+.section{
+padding:40px 20px;
+}
+
+.title{
+font-size:34px;
+}
+
+}
+
 </style>
 
 </head>
@@ -105,7 +118,18 @@ border-radius:12px;
 <body>
 
 <header>
-<div class="logo">🐜 STRONG ANTS</div>
+
+<div class="logo">
+
+<img src="logo (2).png"
+style="width:55px;height:55px;border-radius:12px;">
+
+<div>
+STRONG ANTS
+</div>
+
+</div>
+
 </header>
 
 <section class="section">
@@ -116,10 +140,12 @@ border-radius:12px;
 
 <div class="products">
 
+
+
 <div class="card">
 
 <h3>
-Strzykawka 5 ml + igły 2 szt.
+💉 Strzykawka 5 ml + igły 2 szt.
 </h3>
 
 <p>
@@ -139,7 +165,7 @@ Idealna dla początkujących i zaawansowanych hodowców mrówek.
 <div class="card">
 
 <h3>
-Mieszanka ziaren dla Messor barbarus
+🌾 Mieszanka ziaren dla Messor barbarus
 </h3>
 
 <p>
@@ -160,7 +186,7 @@ prawidłowy rozwój kolonii.
 <div class="card">
 
 <h3>
-Probówki do hodowli mrówek
+🧪 Probówki do hodowli mrówek
 </h3>
 
 <p>
@@ -179,7 +205,7 @@ od 9,99 zł
 <div class="card">
 
 <h3>
-Len łuskany dla mrówek
+🌱 Len łuskany dla mrówek
 </h3>
 
 <p>
@@ -198,7 +224,7 @@ Len znajduje się w wygodnej probówce PS 16x65 mm.
 <div class="card">
 
 <h3>
-Formikarium Strong Ants
+🏠 Formikarium Strong Ants
 </h3>
 
 <p>
@@ -214,7 +240,7 @@ i bezpiecznej hodowli kolonii mrówek.
 <div class="card">
 
 <h3>
-Karmidełka i poidła
+🍯 Karmidełka i poidła
 </h3>
 
 <p>
@@ -228,7 +254,7 @@ ułatwiające codzienną opiekę nad kolonią.
 
 <div class="card">
 
-<img src="zdjecie-podglad-peseta.jpg" alt="Pęseta do hodowli mrówek">
+<img src="peseta.jpg" alt="Pęseta do hodowli mrówek">
 
 <h3>
 🛠 Pęseta prosta do hodowli mrówek
@@ -255,6 +281,9 @@ Zobacz ofertę
 </a>
 
 </div>
+
+
+
 <div class="card">
 
 <h3>💧 Butelka tryskawka 1000 ml</h3>
@@ -384,24 +413,6 @@ Zobacz ofertę
 
 <div class="card">
 
-<h3>💉 Strzykawka 5 ml + igły</h3>
-
-<p>
-Profesjonalna strzykawka do precyzyjnego
-nawadniania formikariów oraz probówek.
-</p>
-
-<div class="price">
-5,00 zł
-</div>
-
-<a class="button" href="https://allegro.pl/oferta/strzykawka-5ml-igly-2-szt-do-hodowli-mrowek-18413956695">
-Zobacz ofertę
-</a>
-
-</div>
-  <div class="card">
-
 <h3>💧 Pipety 3 ml – 3 sztuki</h3>
 
 <p>
@@ -487,7 +498,10 @@ Zobacz ofertę
 </a>
 
 </div>
-  <div class="card">
+
+
+
+<div class="card">
 
 <h3>🍽️ Karmidełko Strong Ants</h3>
 
@@ -512,9 +526,11 @@ Zobacz ofertę
 </a>
 
 </div>
+
 </div>
 
 </section>
 
 </body>
 </html>
+
