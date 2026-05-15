@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Butelka tryskawka - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+.topbar{
+background:black;
+padding:20px;
+border-bottom:2px solid #ffd000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ffd000;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.koszyk{
+color:white;
+text-decoration:none;
+font-size:22px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.image img{
+width:100%;
+border-radius:20px;
+background:white;
+padding:20px;
+box-sizing:border-box;
+object-fit:contain;
+}
+
+.title{
+font-size:48px;
+color:#ffd000;
+margin-bottom:20px;
+}
+
+.desc{
+font-size:22px;
+line-height:1.7;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.price{
+font-size:42px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.button{
+display:inline-block;
+padding:18px 35px;
+background:#ffd000;
+color:black;
+font-size:22px;
+font-weight:bold;
+border-radius:14px;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.button:hover{
+transform:scale(1.03);
+box-shadow:0 0 20px rgba(255,208,0,0.3);
+}
+
+.features{
+margin-top:30px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+}
+
+.specs{
+margin-top:35px;
+background:#161616;
+padding:25px;
+border-radius:20px;
+border:1px solid #333;
+}
+
+.specs h2{
+color:#ffd000;
+margin-top:0;
+font-size:30px;
+}
+
+.specs p{
+font-size:20px;
+line-height:1.8;
+color:#ddd;
+}
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:38px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a href="index.html" class="logo">
+
+<img src="logo (2).png"
+style="width:55px;height:55px;border-radius:12px;">
+
+<div>
+STRONG ANTS
+</div>
+
+</a>
+
+<a href="koszyk.html" class="koszyk">
+🛒 Koszyk (<span id="koszyk-licznik">0</span>)
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="image">
+
+<img src="butelka-tryskawka.jpg" alt="Butelka tryskawka">
+
+</div>
+
+<div>
+
+<h1 class="title">
+💧 Butelka tryskawka 1000 ml
+</h1>
+
+<p class="desc">
+Tryskawka do terrarium – praktyczne narzędzie do zraszania 1000 ml.
+Idealna do terrariów, paludariów oraz pielęgnacji roślin.
+Doskonale sprawdzi się przy utrzymaniu odpowiedniego poziomu wilgotności
+dla gadów, płazów i roślin tropikalnych.
+</p>
+
+<div class="price">
+11,99 zł
+</div>
+
+<button class="button" onclick="dodajDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
+
+<div class="features">
+
+✔ pojemność 1000 ml<br>
+✔ wygodna wyprofilowana rurka<br>
+✔ precyzyjne zraszanie<br>
+✔ lekka i poręczna konstrukcja<br>
+✔ szczelne zamknięcie
+
+</div>
+
+<div class="specs">
+
+<h2>
+📋 Specyfikacja i zastosowanie
+</h2>
+
+<p>
+
+✔ trwałe tworzywo odporne na uszkodzenia<br>
+✔ wygodna podziałka do dozowania<br>
+✔ idealna do terrariów i paludariów<br>
+✔ do podlewania i zraszania roślin<br>
+✔ utrzymanie wilgotności w hodowlach egzotycznych
+
+</p>
+
+<p>
+Prosta w użyciu i niezawodna –
+niezbędny element wyposażenia każdego terrarium.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function dodajDoKoszyka(){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:"Butelka tryskawka 1000 ml",
+cena:11.99,
+obraz:"butelka-tryskawka.jpg"
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+updateKoszykLicznik();
+
+alert("Produkt dodany do koszyka 🛒");
+
+}
+
+function updateKoszykLicznik(){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+document.getElementById("koszyk-licznik").innerText = koszyk.length;
+
+}
+
+updateKoszykLicznik();
+
+</script>
+
+</body>
+</html>
