@@ -122,6 +122,12 @@ text-decoration:none;
 font-size:22px;
 }
 
+.stock{
+margin-top:20px;
+font-size:20px;
+color:#aaa;
+}
+
 @media(max-width:900px){
 
 .container{
@@ -163,7 +169,8 @@ STRONG ANTS
 
 <div class="image">
 
-<img src="probowki-szklane.jpg" alt="Probówki szklane do hodowli mrówek">
+<img src="probowki-szklane.jpg"
+alt="Probówki szklane do hodowli mrówek">
 
 </div>
 
@@ -202,11 +209,9 @@ Wybierz ilość:
 3,99 zł
 </div>
 
-<button class="button" onclick="dodajDoKoszyka()">
+<div id="kup-box"></div>
 
-🛒 Dodaj do koszyka
-
-</button>
+<div class="stock" id="stock-info"></div>
 
 <div class="features">
 
@@ -222,40 +227,134 @@ Wybierz ilość:
 
 </div>
 
+<script src="stany.js"></script>
+
 <script>
+
+const ID_PRODUKTU = "probowki-szklane";
+
+if(localStorage.getItem("stanyMagazynowe")){
+
+const zapisane =
+JSON.parse(localStorage.getItem("stanyMagazynowe"));
+
+Object.assign(STANY,zapisane);
+
+}
 
 function changePrice(){
 
-let select = document.getElementById("sizeSelect");
+let select =
+document.getElementById("sizeSelect");
 
 document.getElementById("price").innerHTML =
 select.value.replace(".", ",") + " zł";
 
 }
 
+function pokazPrzycisk(){
+
+let box =
+document.getElementById("kup-box");
+
+let stockInfo =
+document.getElementById("stock-info");
+
+let stan =
+STANY[ID_PRODUKTU] || 0;
+
+if(stan <= 0){
+
+box.innerHTML = `
+
+<button class="button"
+style="
+background:#555;
+color:white;
+cursor:not-allowed;
+">
+
+❌ Chwilowo brak
+
+</button>
+
+`;
+
+stockInfo.innerHTML =
+"Produkt aktualnie niedostępny";
+
+}else{
+
+box.innerHTML = `
+
+<button class="button"
+onclick="dodajDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
+
+`;
+
+stockInfo.innerHTML =
+"Dostępnych sztuk: " + stan;
+
+}
+
+}
+
 function dodajDoKoszyka(){
 
-let select = document.getElementById("sizeSelect");
+let stan =
+STANY[ID_PRODUKTU] || 0;
+
+if(stan <= 0){
+
+alert("Produkt chwilowo niedostępny");
+
+return;
+
+}
+
+let select =
+document.getElementById("sizeSelect");
 
 let nazwa =
 "Probówki szklane do hodowli mrówek - " +
 select.options[select.selectedIndex].text;
 
-let cena = parseFloat(select.value);
+let cena =
+parseFloat(select.value);
 
-let obraz = "probowki-szklane.jpg";
+let obraz =
+"probowki-szklane.jpg";
 
-let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
 
 koszyk.push({
 nazwa: nazwa,
 cena: cena,
-obraz: obraz
+obraz: obraz,
+ilosc:1,
+id:ID_PRODUKTU
 });
 
-localStorage.setItem("koszyk", JSON.stringify(koszyk));
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
+
+STANY[ID_PRODUKTU]--;
+
+localStorage.setItem(
+"stanyMagazynowe",
+JSON.stringify(STANY)
+);
 
 updateKoszykLicznik();
+
+pokazPrzycisk();
 
 alert("Produkt dodany do koszyka 🛒");
 
@@ -265,13 +364,20 @@ window.location.href = "koszyk.html";
 
 function updateKoszykLicznik(){
 
-let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
 
-document.getElementById("koszyk-licznik").innerText = koszyk.length;
+document.getElementById(
+"koszyk-licznik"
+).innerText = koszyk.length;
 
 }
 
+changePrice();
+
 updateKoszykLicznik();
+
+pokazPrzycisk();
 
 </script>
 
