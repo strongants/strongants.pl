@@ -100,6 +100,9 @@ color:black;
 text-decoration:none;
 font-weight:bold;
 border-radius:12px;
+border:none;
+cursor:pointer;
+font-size:18px;
 }
 
 select{
@@ -179,7 +182,7 @@ Naturalny pokarm wspierający prawidłowy rozwój kolonii.
 </div>
 
 <select id="ziarnaSelect"
-onchange="document.getElementById('ziarna-price').innerHTML=this.value.replace('.',',') + ' zł'">
+onchange="zmienCeneZiaren()">
 
 <option value="2.50">
 5 ml
@@ -195,10 +198,12 @@ onchange="document.getElementById('ziarna-price').innerHTML=this.value.replace('
 
 </select>
 
-<a class="button"
-href="https://allegro.pl/oferta/mieszanka-ziaren-dla-messor-barbarus-15-gram-25ml-9-skladnikow-18588370495">
-Zobacz ofertę
-</a>
+<button class="button"
+onclick="dodajZiarnaDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
 
 </div>
 
@@ -226,10 +231,12 @@ Idealny jako źródło energii dla kolonii.
 4,99 zł
 </div>
 
-<a class="button"
-href="https://allegro.pl/oferta/naturalny-miod-do-mrowek-5ml-wielokwiatowy-wiosenny-18588223801">
-Zobacz ofertę
-</a>
+<button class="button"
+onclick="dodajMiodDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
 
 </div>
 
@@ -258,7 +265,7 @@ Idealne jako pokarm dla rozwijających się kolonii.
 </div>
 
 <select id="karaczanySelect"
-onchange="document.getElementById('karaczany-price').innerHTML=this.value.replace('.',',') + ' zł'">
+onchange="zmienCeneKaraczanow()">
 
 <option value="9.99">
 30 karaczanów
@@ -274,10 +281,12 @@ onchange="document.getElementById('karaczany-price').innerHTML=this.value.replac
 
 </select>
 
-<a class="button"
-href="https://allegro.pl/oferta/karaczany-tureckie-0-2-2-cm-50szt-najlepsze-zrodlo-bialka-dla-mrowek-18578362936">
-Zobacz ofertę
-</a>
+<button class="button"
+onclick="dodajKaraczanyDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
 
 </div>
 
@@ -305,10 +314,12 @@ Wygodna forma przechowywania oraz podawania ziaren.
 9,99 zł
 </div>
 
-<a class="button"
-href="https://allegro.pl/oferta/pokarm-dla-mrowke-jedzienie-dla-messor-barbarus-w-probowkach-zestaw-ziaren-18542451222">
-Zobacz ofertę
-</a>
+<button class="button"
+onclick="dodajZestawZiarenDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
 
 </div>
 
@@ -317,6 +328,98 @@ Zobacz ofertę
 </div>
 
 </section>
+
+<script>
+
+function zmienCeneZiaren(){
+
+let select = document.getElementById("ziarnaSelect");
+
+document.getElementById("ziarna-price").innerHTML =
+select.value.replace(".", ",") + " zł";
+
+}
+
+function zmienCeneKaraczanow(){
+
+let select = document.getElementById("karaczanySelect");
+
+document.getElementById("karaczany-price").innerHTML =
+select.value.replace(".", ",") + " zł";
+
+}
+
+function dodajZiarnaDoKoszyka(){
+
+let select = document.getElementById("ziarnaSelect");
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:"Mieszanka ziaren dla Messor barbarus - " +
+select.options[select.selectedIndex].text,
+cena:parseFloat(select.value),
+obraz:"ziarna-messor.jpg"
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+alert("Produkt dodany do koszyka 🛒");
+
+}
+
+function dodajKaraczanyDoKoszyka(){
+
+let select = document.getElementById("karaczanySelect");
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:"Karaczany tureckie - " +
+select.options[select.selectedIndex].text,
+cena:parseFloat(select.value),
+obraz:"karaczany-tureckie.jpg"
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+alert("Produkt dodany do koszyka 🛒");
+
+}
+
+function dodajMiodDoKoszyka(){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:"Naturalny miód dla mrówek 5 ml",
+cena:4.99,
+obraz:"miod-dla-mrowek.jpg"
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+alert("Produkt dodany do koszyka 🛒");
+
+}
+
+function dodajZestawZiarenDoKoszyka(){
+
+let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:"Zestaw ziaren dla Messor barbarus",
+cena:9.99,
+obraz:"zestaw-ziaren.jpg"
+});
+
+localStorage.setItem("koszyk", JSON.stringify(koszyk));
+
+alert("Produkt dodany do koszyka 🛒");
+
+}
+
+</script>
 
 </body>
 </html>
