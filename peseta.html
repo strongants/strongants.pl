@@ -182,22 +182,22 @@ Wybierz długość:
 
 <select id="sizeSelect" onchange="changePrice()">
 
-<option value="9.99">
+<option value="7.99">
 13 cm
 </option>
 
-<option value="14.99">
+<option value="9.99">
 18 cm
 </option>
 
-<option value="19.99">
+<option value="17.99">
 25 cm
 </option>
 
 </select>
 
 <div class="price" id="price">
-9,99 zł
+7,99 zł
 </div>
 
 <button class="button" onclick="dodajDoKoszyka()">
@@ -240,7 +240,6 @@ select.options[select.selectedIndex].text;
 
 let cena = parseFloat(select.value);
 
-/* POPRAWIONA NAZWA ZDJĘCIA */
 let obraz = "peseta.jpg";
 
 let koszyk = JSON.parse(localStorage.getItem("koszyk")) || [];
