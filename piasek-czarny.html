@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Piasek czarny bazaltowy - Strong Ants</title>
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+.topbar{
+background:black;
+padding:20px;
+border-bottom:2px solid #ffd000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ffd000;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.koszyk{
+color:white;
+text-decoration:none;
+font-size:22px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.image img{
+width:100%;
+background:white;
+border-radius:20px;
+padding:15px;
+box-sizing:border-box;
+object-fit:contain;
+}
+
+.title{
+font-size:48px;
+color:#ffd000;
+margin-bottom:20px;
+}
+
+.desc{
+font-size:22px;
+line-height:1.7;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.select-title{
+font-size:24px;
+margin-bottom:15px;
+}
+
+select{
+width:100%;
+padding:15px;
+font-size:20px;
+border-radius:12px;
+border:none;
+background:#1b1b1b;
+color:white;
+margin-bottom:30px;
+}
+
+.price{
+font-size:42px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.button{
+display:inline-block;
+padding:18px 35px;
+background:#ffd000;
+color:black;
+font-size:22px;
+font-weight:bold;
+border-radius:14px;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.button:hover{
+transform:scale(1.03);
+}
+
+.features{
+margin-top:30px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+}
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:38px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a href="index.html" class="logo">
+
+🐜 STRONG ANTS
+
+</a>
+
+<a href="koszyk.html" class="koszyk">
+🛒 Koszyk
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="image">
+
+<img src="piasek-czarny.jpg"
+alt="Piasek czarny bazaltowy">
+
+</div>
+
+<div>
+
+<h1 class="title">
+⚫ Piasek czarny bazaltowy
+</h1>
+
+<p class="desc">
+Wysokiej jakości piasek z czarnego bazaltu do hodowli mrówek, który stanie się świetnym dodatkiem do Twojego formikarium. Dzięki swojej naturalnej barwie idealnie nadaje się do aranżacji areny tworząc naturalne warunki sprzyjające aktywności mrówek o gradacji 1–2 mm.
+<br><br>
+Piasek jest bezpieczny dla wszystkich gatunków mrówek.
+</p>
+
+<div class="select-title">
+Wybierz ilość:
+</div>
+
+<select id="sizeSelect" onchange="changePrice()">
+
+<option value="3.99">
+70 ml
+</option>
+
+<option value="6.99">
+140 ml
+</option>
+
+</select>
+
+<div class="price" id="price">
+3,99 zł
+</div>
+
+<button class="button" onclick="dodajDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
+
+<div class="features">
+
+✔ naturalny czarny bazalt<br>
+✔ gradacja 1–2 mm<br>
+✔ idealny do aren formikarium<br>
+✔ bezpieczny dla mrówek<br>
+✔ estetyczny wygląd hodowli
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function changePrice(){
+
+let select = document.getElementById("sizeSelect");
+
+document.getElementById("price").innerHTML =
+select.value.replace(".", ",") + " zł";
+
+}
+
+function dodajDoKoszyka(){
+
+let select = document.getElementById("sizeSelect");
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+
+nazwa:
+"Piasek czarny bazaltowy - " +
+select.options[select.selectedIndex].text,
+
+cena: parseFloat(select.value),
+
+obraz:"piasek-czarny.jpg"
+
+});
+
+localStorage.setItem("koszyk",
+JSON.stringify(koszyk));
+
+alert("Produkt dodany do koszyka 🛒");
+
+}
+
+</script>
+
+</body>
+</html>
