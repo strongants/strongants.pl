@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Płatność - Strong Ants</title>
+<title>Checkout - Strong Ants</title>
 
 <style>
 
@@ -18,7 +18,7 @@ color:white;
 }
 
 .container{
-max-width:1000px;
+max-width:1200px;
 margin:auto;
 padding:50px 20px;
 }
@@ -67,6 +67,8 @@ border:1px solid #333;
 border-radius:25px;
 padding:35px;
 height:fit-content;
+position:sticky;
+top:20px;
 }
 
 .summary h2{
@@ -82,10 +84,20 @@ margin-bottom:20px;
 font-size:22px;
 }
 
+.product-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+font-size:18px;
+color:#ddd;
+gap:15px;
+}
+
 .total{
 font-size:48px;
 font-weight:bold;
 margin:40px 0;
+color:#ffd000;
 }
 
 .pay-btn{
@@ -98,10 +110,11 @@ border-radius:16px;
 font-size:24px;
 font-weight:bold;
 cursor:pointer;
+transition:0.2s;
 }
 
 .pay-btn:hover{
-opacity:0.9;
+transform:scale(1.02);
 }
 
 .secure{
@@ -109,6 +122,17 @@ margin-top:20px;
 color:#999;
 font-size:16px;
 text-align:center;
+}
+
+.back{
+display:inline-block;
+margin-top:30px;
+padding:14px 28px;
+background:#ffd000;
+color:black;
+font-weight:bold;
+border-radius:12px;
+text-decoration:none;
 }
 
 @media(max-width:900px){
@@ -119,6 +143,10 @@ grid-template-columns:1fr;
 
 .title{
 font-size:42px;
+}
+
+.total{
+font-size:38px;
 }
 
 }
@@ -145,13 +173,13 @@ font-size:42px;
 Dane klienta
 </h2>
 
-<input type="text" placeholder="Imię i nazwisko">
+<input type="text" id="name" placeholder="Imię i nazwisko">
 
-<input type="email" placeholder="Adres e-mail">
+<input type="email" id="email" placeholder="Adres e-mail">
 
-<input type="text" placeholder="Numer telefonu">
+<input type="text" id="phone" placeholder="Numer telefonu">
 
-<input type="text" placeholder="Adres dostawy">
+<input type="text" id="address" placeholder="Adres dostawy">
 
 </div>
 
@@ -161,13 +189,19 @@ Dane klienta
 Dostawa
 </h2>
 
-<select>
+<select id="delivery" onchange="przeliczSume()">
 
-<option>InPost Paczkomat — 14,99 zł</option>
+<option value="14.99">
+InPost Paczkomat — 14,99 zł
+</option>
 
-<option>Kurier InPost — 16,99 zł</option>
+<option value="16.99">
+Kurier InPost — 16,99 zł
+</option>
 
-<option>Orlen Paczka — 12,99 zł</option>
+<option value="12.99">
+Orlen Paczka — 12,99 zł
+</option>
 
 </select>
 
@@ -195,6 +229,10 @@ Płatność
 
 </div>
 
+<a href="koszyk.html" class="back">
+← Powrót do koszyka
+</a>
+
 </div>
 
 <div class="summary">
@@ -203,22 +241,26 @@ Płatność
 Podsumowanie
 </h2>
 
+<div id="produkty-checkout"></div>
+
+<hr style="border:1px solid #333; margin:25px 0;">
+
 <div class="row">
 <span>Produkty</span>
-<span>209,99 zł</span>
+<span id="produkty-suma">0 zł</span>
 </div>
 
 <div class="row">
 <span>Dostawa</span>
-<span>14,99 zł</span>
+<span id="dostawa-suma">14,99 zł</span>
 </div>
 
-<div class="total">
-224,98 zł
+<div class="total" id="total">
+0 zł
 </div>
 
 <button class="pay-btn" onclick="payNow()">
-Zapłać teraz
+🛒 Zamawiam i płacę
 </button>
 
 <div class="secure">
@@ -230,19 +272,95 @@ Zapłać teraz
 </div>
 
 </div>
+
 <script>
+
+let sumaProduktow = 0;
+
+function zaladujKoszyk(){
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+let kontener =
+document.getElementById("produkty-checkout");
+
+kontener.innerHTML = "";
+
+sumaProduktow = 0;
+
+koszyk.forEach((produkt)=>{
+
+let cena = Number(produkt.cena);
+
+let ilosc = produkt.ilosc || 1;
+
+let razem = cena * ilosc;
+
+sumaProduktow += razem;
+
+kontener.innerHTML += `
+
+<div class="product-row">
+
+<div>
+${produkt.nazwa}
+x${ilosc}
+</div>
+
+<div>
+${razem.toFixed(2)} zł
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("produkty-suma").innerText =
+sumaProduktow.toFixed(2) + " zł";
+
+przeliczSume();
+
+}
+
+function przeliczSume(){
+
+let dostawa =
+Number(document.getElementById("delivery").value);
+
+document.getElementById("dostawa-suma").innerText =
+dostawa.toFixed(2) + " zł";
+
+let suma =
+sumaProduktow + dostawa;
+
+document.getElementById("total").innerText =
+suma.toFixed(2) + " zł";
+
+}
 
 function payNow(){
 
-const name =
-document.querySelector('input[type="text"]').value;
+let name =
+document.getElementById("name").value;
 
-const email =
-document.querySelector('input[type="email"]').value;
+let email =
+document.getElementById("email").value;
 
-if(name === "" || email === ""){
+let phone =
+document.getElementById("phone").value;
 
-alert("Uzupełnij dane klienta.");
+let address =
+document.getElementById("address").value;
+
+if(name === "" ||
+email === "" ||
+phone === "" ||
+address === ""){
+
+alert("Uzupełnij wszystkie dane.");
 
 return;
 
@@ -252,10 +370,16 @@ alert(
 "Dziękujemy za zamówienie w Strong Ants 🐜"
 );
 
-window.location.href = "dziekujemy.html";
+localStorage.removeItem("koszyk");
+
+window.location.href =
+"dziekujemy.html";
 
 }
 
+zaladujKoszyk();
+
 </script>
+
 </body>
 </html>
