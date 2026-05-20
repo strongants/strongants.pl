@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Strong Ants Podłoże dekoracyjne do formikarium
+</title>
+
+<meta name="description"
+content="Strong Ants podłoże dekoracyjne do formikarium. Naturalne dekoracyjne podłoże dla mrówek o ciemnobrązowej połyskującej strukturze.">
+
+<style>
+
+body{
+margin:0;
+background:#0d0d0d;
+font-family:Arial;
+color:white;
+}
+
+.topbar{
+background:black;
+padding:20px;
+border-bottom:2px solid #ffd000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ffd000;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:12px;
+}
+
+.koszyk{
+color:white;
+text-decoration:none;
+font-size:22px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.image img{
+width:100%;
+background:white;
+border-radius:20px;
+padding:20px;
+box-sizing:border-box;
+object-fit:contain;
+}
+
+.title{
+font-size:52px;
+color:#ffd000;
+margin-bottom:20px;
+}
+
+.desc{
+font-size:22px;
+line-height:1.8;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.select-title{
+font-size:24px;
+margin-bottom:15px;
+}
+
+select{
+width:100%;
+padding:15px;
+font-size:20px;
+border-radius:12px;
+border:none;
+background:#1b1b1b;
+color:white;
+margin-bottom:30px;
+}
+
+.price{
+font-size:42px;
+font-weight:bold;
+color:#ffd000;
+margin-bottom:30px;
+}
+
+.button{
+display:inline-block;
+padding:18px 35px;
+background:#ffd000;
+color:black;
+font-size:22px;
+font-weight:bold;
+border-radius:14px;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.button:hover{
+transform:scale(1.03);
+box-shadow:0 0 20px rgba(255,208,0,0.3);
+}
+
+.features{
+margin-top:30px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+}
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:38px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a href="index.html" class="logo">
+
+<img src="logo (2).png">
+
+<div>
+STRONG ANTS
+</div>
+
+</a>
+
+<a href="koszyk.html" class="koszyk">
+🛒 Koszyk
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="image">
+
+<img src="strong-ants-podloze-dekoracyjne-do-formikarium.jpg"
+alt="Strong Ants podłoże dekoracyjne do formikarium">
+
+</div>
+
+<div>
+
+<h1 class="title">
+✨ Strong Ants Podłoże dekoracyjne do formikarium
+</h1>
+
+<p class="desc">
+
+Nadaj swojej arenie unikalny wygląd dzięki
+autorskiemu podłożu dekoracyjnemu Strong Ants.
+To starannie dobrana mieszanka
+ciemnego, brązowo-czarnego granulatu
+o delikatnym połysku,
+idealna do aranżacji formikariów.
+
+Podłoże świetnie prezentuje się zarówno
+w małych, jak i dużych arenach,
+tworząc naturalny i estetyczny wygląd kolonii.
+
+</p>
+
+<div class="select-title">
+
+Wybierz pojemność:
+
+</div>
+
+<select id="sizeSelect"
+onchange="changePrice()">
+
+<option value="2.80">
+200 ml
+</option>
+
+<option value="5.00">
+400 ml
+</option>
+
+</select>
+
+<div class="price" id="price">
+2,80 zł
+</div>
+
+<button class="button"
+onclick="dodajDoKoszyka()">
+
+🛒 Dodaj do koszyka
+
+</button>
+
+<div class="features">
+
+✔ kolor ciemny brązowo-czarny<br>
+✔ delikatnie połyskująca struktura<br>
+✔ naturalny wyprażony materiał<br>
+✔ bezpieczny dla mrówek<br>
+✔ gradacja około 2 mm<br>
+✔ idealny do dekoracji areny<br>
+✔ świetny dla małych i dużych gatunków
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function changePrice(){
+
+let select =
+document.getElementById("sizeSelect");
+
+document.getElementById("price").innerHTML =
+select.value.replace(".", ",") + " zł";
+
+}
+
+function dodajDoKoszyka(){
+
+let select =
+document.getElementById("sizeSelect");
+
+let nazwa =
+"Strong Ants Podłoże dekoracyjne do formikarium - " +
+select.options[select.selectedIndex].text;
+
+let cena =
+parseFloat(select.value);
+
+let obraz =
+"strong-ants-podloze-dekoracyjne-do-formikarium.jpg";
+
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+koszyk.push({
+nazwa:nazwa,
+cena:cena,
+obraz:obraz
+});
+
+localStorage.setItem(
+"koszyk",
+JSON.stringify(koszyk)
+);
+
+alert("Dodano do koszyka 🛒");
+
+window.location.href =
+"koszyk.html";
+
+}
+
+</script>
+
+</body>
+</html>
