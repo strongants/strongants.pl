@@ -434,20 +434,32 @@ section.classList.remove('active');
 document.getElementById(id)
 .classList.add('active');
 
-}
-
-/* BAZA */
-
 <script>
 
-let domyslneProdukty = [
+/* MENU */
 
-/* MRÓWKI */
+function openSection(id){
+
+let sections =
+document.querySelectorAll('.section');
+
+sections.forEach((section)=>{
+section.classList.remove('active');
+});
+
+document.getElementById(id)
+.classList.add('active');
+
+}
+
+/* PRODUKTY */
+
+let domyslneProdukty = [
 
 {
 id:1,
 nazwa:"Camponotus Nicobarensis",
-opis:"Egzotyczny gatunek mrówek dla początkujących i zaawansowanych hodowców.",
+opis:"Egzotyczny gatunek mrówek.",
 cena:38.99,
 stan:10,
 kategoria:"Mrówki",
@@ -455,150 +467,91 @@ obraz:"camponotus-nicobarensis.jpg",
 sprzedane:0
 },
 
-/* AKCESORIA */
-
 {
 id:2,
-nazwa:"Poidełko do hodowli mrówek",
-opis:"Poidełko 3D zapewniające stały dostęp do wody.",
-cena:6.99,
-stan:15,
-kategoria:"Akcesoria",
-obraz:"poidelko-do-hodowli-mrowek.jpg",
-sprzedane:0
-},
-
-{
-id:3,
-nazwa:"Probówki szklane",
-opis:"Probówki do zakładania kolonii mrówek.",
-cena:3.99,
-stan:40,
-kategoria:"Akcesoria",
-obraz:"probowki-szklane.jpg",
-sprzedane:0
-},
-
-{
-id:4,
-nazwa:"Mata grzewcza",
-opis:"Mata grzewcza do formikariów i hodowli egzotycznych.",
-cena:34.99,
-stan:8,
-kategoria:"Akcesoria",
-obraz:"mata-grzewcza.jpg",
-sprzedane:0
-},
-
-{
-id:5,
-nazwa:"Butelka tryskawka",
-opis:"Butelka do zraszania formikariów.",
-cena:11.99,
-stan:12,
-kategoria:"Akcesoria",
-obraz:"butelka-tryskawka.jpg",
-sprzedane:0
-},
-
-{
-id:6,
-nazwa:"Pipety 3 ml",
-opis:"Pipety do dozowania miodu i wody.",
-cena:4.99,
-stan:25,
-kategoria:"Akcesoria",
-obraz:"pipety.jpg",
-sprzedane:0
-},
-
-{
-id:7,
-nazwa:"Skalpel do owadów karmowych",
-opis:"Precyzyjny skalpel do porcjowania karmówki.",
-cena:9.99,
-stan:14,
-kategoria:"Akcesoria",
-obraz:"skalpel-do-owadow-karmowych.jpg",
-sprzedane:0
-},
-
-/* DEKORACJE */
-
-{
-id:8,
 nazwa:"Piasek kwarcowy biały",
-opis:"Najczęściej wybierane podłoże do formikariów.",
+opis:"Naturalny biały piasek do formikariów.",
 cena:3.99,
-stan:30,
+stan:25,
 kategoria:"Dekoracje",
 obraz:"piasek-kwarcowy-bialy.jpg",
 sprzedane:0
 },
 
 {
-id:9,
+id:3,
 nazwa:"Piasek czarny bazaltowy",
-opis:"Naturalny czarny piasek bazaltowy do areny.",
+opis:"Naturalny czarny piasek bazaltowy.",
 cena:3.99,
-stan:18,
+stan:20,
 kategoria:"Dekoracje",
-obraz:"piasek-czarny-bazalt.jpg",
+obraz:"piasek-czarny.jpg",
 sprzedane:0
 },
 
 {
-id:10,
+id:4,
 nazwa:"Piasek TerraFlame",
-opis:"Pomarańczowy piasek pustynny do formikariów.",
+opis:"Pomarańczowy piasek pustynny.",
 cena:3.99,
-stan:20,
+stan:18,
 kategoria:"Dekoracje",
 obraz:"piasek-terraflame.jpg",
 sprzedane:0
 },
 
 {
-id:11,
+id:5,
 nazwa:"Żwirek pustynny",
-opis:"Naturalny żwirek pustynny 0,2-0,4 mm.",
+opis:"Naturalny żwirek pustynny.",
 cena:3.99,
-stan:20,
+stan:15,
 kategoria:"Dekoracje",
 obraz:"zwirek-pustynny.jpg",
 sprzedane:0
 },
 
 {
-id:12,
-nazwa:"Autorski piasek dekoracyjny Strong Ants",
-opis:"Autorska mieszanka dekoracyjna Strong Ants.",
-cena:2.80,
-stan:16,
-kategoria:"Dekoracje",
-obraz:"autorski-piasek-dekoracyjny-strong-ants.jpg",
-sprzedane:0
-},
-
-{
-id:13,
+id:6,
 nazwa:"Glina czerwona mielona",
-opis:"Naturalna glina czerwona do formikariów.",
+opis:"Glina czerwona do formikariów.",
 cena:3.49,
-stan:24,
+stan:22,
 kategoria:"Dekoracje",
 obraz:"glina-czerwona-mielona.jpg",
 sprzedane:0
 },
 
 {
-id:14,
+id:7,
 nazwa:"Casuarina wybielana",
 opis:"Naturalna dekoracja do formikariów.",
 cena:3.50,
-stan:15,
+stan:14,
 kategoria:"Dekoracje",
 obraz:"casuarina-wybielana.jpg",
+sprzedane:0
+},
+
+{
+id:8,
+nazwa:"Probówki szklane",
+opis:"Probówki do hodowli mrówek.",
+cena:12.99,
+stan:30,
+kategoria:"Akcesoria",
+obraz:"probowki-szklane.jpg",
+sprzedane:0
+},
+
+{
+id:9,
+nazwa:"Karmidełko do hodowli mrówek",
+opis:"Karmidełko 3D Strong Ants.",
+cena:3.99,
+stan:40,
+kategoria:"Akcesoria",
+obraz:"karmidelko-2.jpg",
 sprzedane:0
 }
 
@@ -618,7 +571,6 @@ JSON.stringify(produkty)
 
 }
 
-</script>
 function saveProducts(){
 
 localStorage.setItem(
@@ -627,6 +579,7 @@ JSON.stringify(produkty)
 );
 
 renderProducts();
+updateDashboard();
 
 }
 
@@ -643,10 +596,10 @@ opis:
 document.getElementById('product-description').value,
 
 cena:
-document.getElementById('product-price').value,
+Number(document.getElementById('product-price').value),
 
 stan:
-document.getElementById('product-stock').value,
+Number(document.getElementById('product-stock').value),
 
 kategoria:
 document.getElementById('product-category').value,
@@ -673,7 +626,8 @@ kontener.innerHTML = '';
 
 produkty.forEach((produkt,index)=>{
 
-let badge = produkt.stan > 0
+let badge =
+produkt.stan > 0
 ?
 '<div class="badge green">Dostępny</div>'
 :
@@ -686,25 +640,17 @@ kontener.innerHTML += `
 <img src="${produkt.obraz}"
 onerror="this.src='logo (2).png'">
 
-<h2>
-${produkt.nazwa}
-</h2>
+<h2>${produkt.nazwa}</h2>
 
-<p>
-${produkt.opis}
-</p>
+<p>${produkt.opis}</p>
 
-<p>
-💰 ${produkt.cena} zł
-</p>
+<p>💰 ${produkt.cena} zł</p>
 
-<p>
-📦 Stan: ${produkt.stan}
-</p>
+<p>📦 Stan: ${produkt.stan}</p>
 
-<p>
-🔥 Sprzedane: ${produkt.sprzedane}
-</p>
+<p>🔥 Sprzedane: ${produkt.sprzedane}</p>
+
+<p>📂 ${produkt.kategoria}</p>
 
 ${badge}
 
@@ -741,7 +687,24 @@ let nowaCena = prompt(
 produkty[index].cena
 );
 
-produkty[index].cena = nowaCena;
+if(nowaCena !== null){
+
+produkty[index].cena =
+Number(nowaCena);
+
+}
+
+let nowyStan = prompt(
+'Nowy stan magazynowy',
+produkty[index].stan
+);
+
+if(nowyStan !== null){
+
+produkty[index].stan =
+Number(nowyStan);
+
+}
 
 saveProducts();
 
@@ -759,23 +722,28 @@ document.getElementById('orders-list');
 
 kontener.innerHTML = '';
 
+if(zamowienia.length === 0){
+
+kontener.innerHTML =
+'<div class="box">Brak zamówień.</div>';
+
+return;
+
+}
+
 zamowienia.forEach((zamowienie)=>{
 
 kontener.innerHTML += `
 
 <div class="order">
 
-<h2>
-🧾 ${zamowienie.numer}
-</h2>
+<h2>🧾 ${zamowienie.numer}</h2>
 
-<p>
-👤 ${zamowienie.klient}
-</p>
+<p>👤 ${zamowienie.klient}</p>
 
-<p>
-📧 ${zamowienie.email}
-</p>
+<p>📧 ${zamowienie.email}</p>
+
+<p>📅 ${zamowienie.data}</p>
 
 <div class="order-status nowe">
 Nowe
@@ -789,8 +757,40 @@ Nowe
 
 }
 
+/* DASHBOARD */
+
+function updateDashboard(){
+
+document.getElementById(
+'products-count'
+).innerText = produkty.length;
+
+document.getElementById(
+'orders-count'
+).innerText = zamowienia.length;
+
+let suma = 0;
+
+zamowienia.forEach((z)=>{
+
+if(z.suma){
+
+suma += Number(z.suma);
+
+}
+
+});
+
+document.getElementById(
+'sales-total'
+).innerText =
+suma.toFixed(2) + ' zł';
+
+}
+
 renderProducts();
 renderOrders();
+updateDashboard();
 
 </script>
 
