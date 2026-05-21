@@ -2,8 +2,10 @@
 <html lang="pl">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Koszyk - Strong Ants</title>
 
@@ -14,6 +16,7 @@ margin:0;
 background:#0d0d0d;
 font-family:Arial;
 color:white;
+overflow-x:hidden;
 }
 
 header{
@@ -34,12 +37,25 @@ text-decoration:none;
 
 .section{
 padding:60px 10%;
+animation:fadeIn 0.5s ease;
 }
 
 .title{
 font-size:42px;
 color:#ffd000;
-margin-bottom:40px;
+margin-bottom:15px;
+}
+
+.delivery-info{
+background:#1c1c1c;
+border:1px solid #333;
+padding:18px;
+border-radius:16px;
+margin-bottom:35px;
+font-size:18px;
+color:#00e676;
+font-weight:bold;
+animation:slideDown 0.4s ease;
 }
 
 .product{
@@ -51,6 +67,13 @@ margin-bottom:20px;
 display:flex;
 gap:20px;
 align-items:center;
+transition:0.25s;
+animation:fadeInUp 0.3s ease;
+}
+
+.product:hover{
+transform:translateY(-4px);
+border-color:#ffd000;
 }
 
 .product img{
@@ -69,35 +92,60 @@ flex:1;
 .product h3{
 color:#ffd000;
 margin:0 0 10px;
+font-size:28px;
+}
+
+.product-summary{
+font-size:18px;
+color:#bbb;
+margin-top:10px;
+line-height:1.8;
 }
 
 .price{
-font-size:28px;
+font-size:32px;
 font-weight:bold;
 color:#ffd000;
-margin-top:10px;
+margin-top:15px;
 }
 
 .remove{
 background:red;
 border:none;
-padding:10px 20px;
-border-radius:10px;
+padding:12px 20px;
+border-radius:12px;
 color:white;
 cursor:pointer;
 font-weight:bold;
 transition:0.2s;
+font-size:16px;
 }
 
 .remove:hover{
 transform:scale(1.05);
 }
 
-.total{
-font-size:36px;
-color:#ffd000;
+.total-box{
+background:#161616;
+border:1px solid #333;
+border-radius:22px;
+padding:30px;
 margin-top:40px;
+animation:fadeIn 0.5s ease;
+}
+
+.total-row{
+display:flex;
+justify-content:space-between;
+font-size:24px;
+margin-bottom:18px;
+}
+
+.total{
+font-size:42px;
 font-weight:bold;
+color:#ffd000;
+margin-top:20px;
 }
 
 .empty{
@@ -109,27 +157,32 @@ color:#999;
 display:flex;
 gap:20px;
 flex-wrap:wrap;
-margin-top:30px;
+margin-top:35px;
 }
 
 .back-button{
 display:inline-block;
-padding:14px 28px;
+padding:16px 30px;
 background:#ffd000;
 color:black;
 font-weight:bold;
-border-radius:12px;
+border-radius:14px;
 text-decoration:none;
 font-size:20px;
+transition:0.2s;
+}
+
+.back-button:hover{
+transform:scale(1.03);
 }
 
 .checkout-button{
 display:inline-block;
-padding:14px 28px;
+padding:16px 30px;
 background:#00c853;
 color:white;
 font-weight:bold;
-border-radius:12px;
+border-radius:14px;
 text-decoration:none;
 font-size:20px;
 transition:0.2s;
@@ -139,18 +192,24 @@ transition:0.2s;
 transform:scale(1.03);
 }
 
+.checkout-disabled{
+background:#666 !important;
+pointer-events:none;
+opacity:0.5;
+}
+
 .quantity-box{
 display:flex;
 align-items:center;
 gap:12px;
-margin-top:15px;
+margin-top:18px;
 }
 
 .quantity-box button{
-width:36px;
-height:36px;
+width:40px;
+height:40px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 background:#ffd000;
 color:black;
 font-size:24px;
@@ -164,10 +223,76 @@ transform:scale(1.08);
 }
 
 .quantity-number{
-font-size:22px;
+font-size:24px;
 font-weight:bold;
-min-width:30px;
+min-width:35px;
 text-align:center;
+}
+
+.stock-badge{
+display:inline-block;
+margin-top:15px;
+padding:10px 16px;
+border-radius:12px;
+font-weight:bold;
+font-size:16px;
+}
+
+.stock-ok{
+background:#003d1f;
+color:#00ff99;
+}
+
+.stock-bad{
+background:#4d0000;
+color:#ff9c9c;
+}
+
+.secure{
+margin-top:25px;
+font-size:18px;
+color:#999;
+text-align:center;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+@keyframes fadeInUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes slideDown{
+
+from{
+opacity:0;
+transform:translateY(-20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 @media(max-width:900px){
@@ -188,7 +313,11 @@ font-size:34px;
 }
 
 .total{
-font-size:30px;
+font-size:34px;
+}
+
+.total-row{
+font-size:20px;
 }
 
 }
@@ -216,24 +345,76 @@ STRONG ANTS
 
 <section class="section">
 
-<h1 class="title">
+<h1 class="title" id="cart-title">
+
 🛒 Twój koszyk
+
 </h1>
+
+<div class="delivery-info">
+
+🚚 Darmowa dostawa do Paczkomatu od 50 zł
+
+</div>
 
 <div id="koszyk"></div>
 
-<div class="total" id="suma">
-Suma: 0 zł
+<div class="total-box">
+
+<div class="total-row">
+
+<span>
+Produkty:
+</span>
+
+<span id="produkty-suma">
+0 zł
+</span>
+
+</div>
+
+<div class="total-row">
+
+<span>
+Dostawa:
+</span>
+
+<span id="dostawa">
+14.99 zł
+</span>
+
+</div>
+
+<div class="total">
+Razem:
+<span id="suma">
+0 zł
+</span>
+</div>
+
+<div class="secure">
+
+🔒 Bezpieczne płatności Strong Ants
+
+</div>
+
 </div>
 
 <div class="buttons">
 
-<a href="produkty.html" class="back-button">
+<a href="produkty.html"
+class="back-button">
+
 ← Kontynuuj zakupy
+
 </a>
 
-<a href="checkout.html" class="checkout-button">
+<a href="checkout.html"
+class="checkout-button"
+id="checkout-btn">
+
 🛒 Zamawiam i płacę
+
 </a>
 
 </div>
@@ -247,22 +428,40 @@ function wyswietlKoszyk(){
 let koszyk =
 JSON.parse(localStorage.getItem("koszyk")) || [];
 
+let stany =
+JSON.parse(localStorage.getItem("produkty")) || [];
+
 let kontener =
 document.getElementById("koszyk");
 
 let suma = 0;
 
+let blokada = false;
+
+document.getElementById("cart-title")
+.innerText =
+"🛒 Twój koszyk (" + koszyk.length + ")";
+
 if(koszyk.length === 0){
 
 kontener.innerHTML = `
+
 <div class="empty">
+
 Koszyk jest pusty.
+
 </div>
+
 `;
 
-document.getElementById("suma").style.display = "none";
+document.querySelector(".total-box")
+.style.display = "none";
+
+document.getElementById("checkout-btn")
+.classList.add("checkout-disabled");
 
 return;
+
 }
 
 kontener.innerHTML = "";
@@ -270,13 +469,58 @@ kontener.innerHTML = "";
 koszyk.forEach((produkt,index)=>{
 
 if(!produkt.ilosc){
+
 produkt.ilosc = 1;
+
 }
 
+let stanProduktu = 999;
+
+stany.forEach((p)=>{
+
+if(p.nazwa === produkt.nazwa){
+
+stanProduktu = p.stan;
+
+}
+
+});
+
 let cenaProduktu =
-Number(produkt.cena) * produkt.ilosc;
+Number(produkt.cena) *
+produkt.ilosc;
 
 suma += cenaProduktu;
+
+let stockHTML = '';
+
+if(stanProduktu <= 0){
+
+blokada = true;
+
+stockHTML = `
+
+<div class="stock-badge stock-bad">
+
+❌ Produkt niedostępny
+
+</div>
+
+`;
+
+}else{
+
+stockHTML = `
+
+<div class="stock-badge stock-ok">
+
+✔ Produkt dostępny
+
+</div>
+
+`;
+
+}
 
 kontener.innerHTML += `
 
@@ -288,24 +532,55 @@ onerror="this.src='logo (2).png'">
 
 <div class="product-info">
 
-<h3>${produkt.nazwa}</h3>
+<h3>
+
+${produkt.nazwa}
+
+</h3>
+
+<div class="product-summary">
+
+Cena za sztukę:
+${Number(produkt.cena).toFixed(2)} zł
+
+<br>
+
+Ilość:
+${produkt.ilosc}
+
+<br>
+
+Łącznie:
+${cenaProduktu.toFixed(2)} zł
+
+</div>
 
 <div class="price">
+
 ${cenaProduktu.toFixed(2)} zł
+
 </div>
+
+${stockHTML}
 
 <div class="quantity-box">
 
 <button onclick="zmniejszIlosc(${index})">
+
 -
+
 </button>
 
 <div class="quantity-number">
+
 ${produkt.ilosc}
+
 </div>
 
 <button onclick="zwiekszIlosc(${index})">
+
 +
+
 </button>
 
 </div>
@@ -330,8 +605,41 @@ localStorage.setItem(
 JSON.stringify(koszyk)
 );
 
-document.getElementById("suma").innerText =
-"Suma: " + suma.toFixed(2) + " zł";
+let dostawa = 14.99;
+
+if(suma >= 50){
+
+dostawa = 0;
+
+document.querySelector(".delivery-info")
+.innerHTML =
+"🎉 Masz darmową dostawę do Paczkomatu!";
+
+}
+
+document.getElementById("produkty-suma")
+.innerText =
+suma.toFixed(2) + " zł";
+
+document.getElementById("dostawa")
+.innerText =
+dostawa.toFixed(2) + " zł";
+
+document.getElementById("suma")
+.innerText =
+(suma + dostawa).toFixed(2) + " zł";
+
+if(blokada){
+
+document.getElementById("checkout-btn")
+.classList.add("checkout-disabled");
+
+}else{
+
+document.getElementById("checkout-btn")
+.classList.remove("checkout-disabled");
+
+}
 
 }
 
@@ -392,4 +700,5 @@ wyswietlKoszyk();
 </script>
 
 </body>
+
 </html>
