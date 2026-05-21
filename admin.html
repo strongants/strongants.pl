@@ -15,14 +15,13 @@ window.location.href = "index.html";
 
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Strong Ants PRO Admin</title>
+<title>Strong Ants PRO CMS</title>
+
+<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -64,7 +63,6 @@ font-size:18px;
 border-radius:12px;
 cursor:pointer;
 text-align:left;
-transition:0.2s;
 }
 
 .menu-btn:hover{
@@ -85,17 +83,17 @@ display:none;
 display:block;
 }
 
-.title{
-font-size:46px;
-color:#ffd000;
-margin-bottom:35px;
-}
-
 .box{
 background:#161616;
 border:1px solid #333;
 border-radius:20px;
 padding:25px;
+margin-bottom:25px;
+}
+
+.title{
+font-size:42px;
+color:#ffd000;
 margin-bottom:30px;
 }
 
@@ -115,50 +113,36 @@ box-sizing:border-box;
 }
 
 button{
-padding:14px 22px;
+padding:14px 24px;
 background:#ffd000;
 border:none;
 border-radius:12px;
 font-weight:bold;
 cursor:pointer;
-transition:0.2s;
-}
-
-button:hover{
-transform:scale(1.03);
 }
 
 .product{
 background:#1a1a1a;
-border:1px solid #333;
-border-radius:18px;
 padding:20px;
-margin-bottom:25px;
+border-radius:16px;
+margin-bottom:20px;
+border:1px solid #333;
 }
 
 .product img{
-width:140px;
-height:140px;
+width:120px;
+height:120px;
 object-fit:cover;
-background:white;
 border-radius:14px;
-margin-bottom:20px;
-}
-
-.category-title{
-font-size:34px;
-color:#ffd000;
-margin:45px 0 25px;
-border-bottom:2px solid #333;
-padding-bottom:10px;
+background:white;
 }
 
 .badge{
 display:inline-block;
-padding:10px 16px;
+padding:8px 14px;
 border-radius:10px;
 font-weight:bold;
-margin-top:15px;
+margin-top:10px;
 }
 
 .green{
@@ -167,44 +151,28 @@ color:#00ff99;
 }
 
 .red{
-background:#4d0000;
-color:#ff9c9c;
+background:#4a0000;
+color:#ff9e9e;
 }
 
 .order{
 background:#161616;
-border:1px solid #333;
-border-radius:20px;
 padding:25px;
+border-radius:20px;
 margin-bottom:25px;
+border:1px solid #333;
 }
 
-.order-product{
-display:flex;
-align-items:center;
-gap:15px;
-padding:12px 0;
-border-bottom:1px solid #333;
-}
-
-.order-product img{
-width:70px;
-height:70px;
-object-fit:cover;
-background:white;
-border-radius:10px;
-}
-
-.status{
-display:inline-block;
-padding:10px 16px;
-border-radius:10px;
-font-weight:bold;
+.order-status{
 margin-top:15px;
+padding:10px 15px;
+border-radius:10px;
+display:inline-block;
+font-weight:bold;
 }
 
 .nowe{
-background:#5e4200;
+background:#5c4200;
 color:#ffd000;
 }
 
@@ -214,105 +182,42 @@ color:#00ff99;
 }
 
 .wyslane{
-background:#002f5e;
-color:#7db8ff;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.stat-box{
-background:#161616;
-padding:30px;
-border-radius:20px;
-border:1px solid #333;
-}
-
-.stat-box h2{
-color:#ffd000;
-font-size:40px;
-margin:0;
-}
-
-.stat-box p{
-font-size:18px;
-color:#999;
-}
-
-@media(max-width:900px){
-
-.sidebar{
-position:relative;
-width:100%;
-height:auto;
-border-right:none;
-border-bottom:2px solid #ffd000;
-}
-
-.content{
-margin-left:0;
-padding:20px;
-}
-
+background:#002b5c;
+color:#7ab8ff;
 }
 
 </style>
-
 </head>
-
 <body>
 
 <div class="sidebar">
 
 <div class="logo">
-
 🐜 STRONG ANTS
-
 </div>
 
-<button class="menu-btn"
-onclick="openSection('dashboard')">
-
+<button class="menu-btn" onclick="openSection('dashboard')">
 📊 Dashboard
-
 </button>
 
-<button class="menu-btn"
-onclick="openSection('products')">
-
+<button class="menu-btn" onclick="openSection('products')">
 🛒 Produkty
-
 </button>
 
-<button class="menu-btn"
-onclick="openSection('orders')">
-
+<button class="menu-btn" onclick="openSection('orders')">
 📦 Zamówienia
-
 </button>
 
-<button class="menu-btn"
-onclick="openSection('shipping')">
-
+<button class="menu-btn" onclick="openSection('shipping')">
 🚚 Wysyłki
-
 </button>
 
-<button class="menu-btn"
-onclick="openSection('payments')">
-
+<button class="menu-btn" onclick="openSection('payments')">
 💳 Płatności
-
 </button>
 
-<button class="menu-btn"
-onclick="openSection('settings')">
-
+<button class="menu-btn" onclick="openSection('settings')">
 ⚙ Ustawienia
-
 </button>
 
 </div>
@@ -321,52 +226,29 @@ onclick="openSection('settings')">
 
 <!-- DASHBOARD -->
 
-<div class="section active"
-id="dashboard">
+<div class="section active" id="dashboard">
 
 <h1 class="title">
-
 📊 Dashboard
-
 </h1>
 
-<div class="stats">
+<div class="box">
 
-<div class="stat-box">
-
-<h2 id="dashboard-products">
-0
+<h2>
+Statystyki sklepu
 </h2>
 
 <p>
-Produkty
+🛒 Zamówienia: <span id="orders-count">0</span>
 </p>
-
-</div>
-
-<div class="stat-box">
-
-<h2 id="dashboard-orders">
-0
-</h2>
 
 <p>
-Zamówienia
+💰 Sprzedaż: <span id="sales-total">0 zł</span>
 </p>
-
-</div>
-
-<div class="stat-box">
-
-<h2 id="dashboard-sales">
-0 zł
-</h2>
 
 <p>
-Sprzedaż
+📦 Produkty: <span id="products-count">0</span>
 </p>
-
-</div>
 
 </div>
 
@@ -374,13 +256,10 @@ Sprzedaż
 
 <!-- PRODUKTY -->
 
-<div class="section"
-id="products">
+<div class="section" id="products">
 
 <h1 class="title">
-
-🛒 Produkty
-
+🛒 Zarządzanie produktami
 </h1>
 
 <div class="box">
@@ -389,8 +268,7 @@ id="products">
 Dodaj nowy produkt
 </h2>
 
-<input id="product-name"
-placeholder="Nazwa produktu">
+<input id="product-name" placeholder="Nazwa produktu">
 
 <textarea id="product-description"
 placeholder="Opis produktu"></textarea>
@@ -404,73 +282,21 @@ type="number"
 placeholder="Stan magazynowy">
 
 <select id="product-category">
-
 <option>Mrówki</option>
-
 <option>Dekoracje</option>
-
 <option>Akcesoria</option>
-
 <option>Pokarmy</option>
-
 <option>Formikaria</option>
-
 </select>
 
 <input id="product-image"
 placeholder="Nazwa zdjęcia">
 
 <button onclick="addProduct()">
-
 ➕ Dodaj produkt
-
 </button>
 
 </div>
-
-<!-- KATEGORIE -->
-
-<button class="menu-btn"
-onclick="openCategory('all')">
-
-🛒 Wszystkie produkty
-
-</button>
-
-<button class="menu-btn"
-onclick="openCategory('Mrówki')">
-
-🐜 Mrówki
-
-</button>
-
-<button class="menu-btn"
-onclick="openCategory('Dekoracje')">
-
-🎨 Dekoracje
-
-</button>
-
-<button class="menu-btn"
-onclick="openCategory('Akcesoria')">
-
-🧪 Akcesoria
-
-</button>
-
-<button class="menu-btn"
-onclick="openCategory('Pokarmy')">
-
-🍯 Pokarmy
-
-</button>
-
-<button class="menu-btn"
-onclick="openCategory('Formikaria')">
-
-🏠 Formikaria
-
-</button>
 
 <div id="products-list"></div>
 
@@ -478,13 +304,10 @@ onclick="openCategory('Formikaria')">
 
 <!-- ZAMÓWIENIA -->
 
-<div class="section"
-id="orders">
+<div class="section" id="orders">
 
 <h1 class="title">
-
 📦 Zamówienia klientów
-
 </h1>
 
 <div id="orders-list"></div>
@@ -493,23 +316,20 @@ id="orders">
 
 <!-- WYSYŁKI -->
 
-<div class="section"
-id="shipping">
+<div class="section" id="shipping">
 
 <h1 class="title">
-
-🚚 Wysyłki
-
+🚚 Panel wysyłek
 </h1>
 
 <div class="box">
 
 <h2>
-Panel wysyłek
+Integracja InPost
 </h2>
 
 <p>
-Integracja z InPost / DPD / Orlen Paczka
+Tutaj podłączysz API InPost.
 </p>
 
 </div>
@@ -518,13 +338,10 @@ Integracja z InPost / DPD / Orlen Paczka
 
 <!-- PŁATNOŚCI -->
 
-<div class="section"
-id="payments">
+<div class="section" id="payments">
 
 <h1 class="title">
-
 💳 Płatności
-
 </h1>
 
 <div class="box">
@@ -551,7 +368,7 @@ PayU
 
 <input placeholder="Client ID">
 
-<input placeholder="Secret">
+<input placeholder="Client Secret">
 
 <button>
 Połącz PayU
@@ -567,7 +384,7 @@ Przelewy24
 
 <input placeholder="Merchant ID">
 
-<input placeholder="CRC">
+<input placeholder="CRC Key">
 
 <button>
 Połącz Przelewy24
@@ -579,25 +396,22 @@ Połącz Przelewy24
 
 <!-- USTAWIENIA -->
 
-<div class="section"
-id="settings">
+<div class="section" id="settings">
 
 <h1 class="title">
-
 ⚙ Ustawienia sklepu
-
 </h1>
 
 <div class="box">
 
 <input placeholder="Nazwa sklepu">
 
-<input placeholder="Adres e-mail">
+<input placeholder="Adres e-mail sklepu">
 
 <input placeholder="Telefon">
 
 <button>
-💾 Zapisz
+💾 Zapisz ustawienia
 </button>
 
 </div>
@@ -614,9 +428,7 @@ let sections =
 document.querySelectorAll('.section');
 
 sections.forEach((section)=>{
-
 section.classList.remove('active');
-
 });
 
 document.getElementById(id)
@@ -624,7 +436,7 @@ document.getElementById(id)
 
 }
 
-/* BAZA PRODUKTÓW */
+/* BAZA */
 
 let produkty =
 JSON.parse(localStorage.getItem('produkty')) || [];
@@ -637,8 +449,6 @@ JSON.stringify(produkty)
 );
 
 renderProducts();
-
-updateDashboard();
 
 }
 
@@ -676,66 +486,19 @@ saveProducts();
 
 }
 
-function openCategory(category){
-
-renderProducts(category);
-
-}
-
-function renderProducts(category = 'all'){
+function renderProducts(){
 
 let kontener =
 document.getElementById('products-list');
 
 kontener.innerHTML = '';
 
-let categories = [
-
-'Mrówki',
-'Dekoracje',
-'Akcesoria',
-'Pokarmy',
-'Formikaria'
-
-];
-
-categories.forEach((cat)=>{
-
-let filteredProducts =
-produkty.filter((produkt)=>{
-
-if(category === 'all'){
-
-return produkt.kategoria === cat;
-
-}
-
-return produkt.kategoria === category;
-
-});
-
-if(filteredProducts.length > 0){
-
-kontener.innerHTML += `
-
-<div class="category-title">
-
-${cat}
-
-</div>
-
-`;
-
-filteredProducts.forEach((produkt,index)=>{
+produkty.forEach((produkt,index)=>{
 
 let badge = produkt.stan > 0
-
 ?
-
 '<div class="badge green">Dostępny</div>'
-
 :
-
 '<div class="badge red">Brak w magazynie</div>';
 
 kontener.innerHTML += `
@@ -746,35 +509,23 @@ kontener.innerHTML += `
 onerror="this.src='logo (2).png'">
 
 <h2>
-
 ${produkt.nazwa}
-
 </h2>
 
 <p>
-
 ${produkt.opis}
-
 </p>
 
 <p>
-
 💰 ${produkt.cena} zł
-
 </p>
 
 <p>
-
-📦 Stan:
-${produkt.stan}
-
+📦 Stan: ${produkt.stan}
 </p>
 
 <p>
-
-🔥 Sprzedane:
-${produkt.sprzedane || 0}
-
+🔥 Sprzedane: ${produkt.sprzedane}
 </p>
 
 ${badge}
@@ -782,21 +533,11 @@ ${badge}
 <br><br>
 
 <button onclick="editProduct(${index})">
-
-✏ Edytuj cenę
-
-</button>
-
-<button onclick="editStock(${index})">
-
-📦 Edytuj stan
-
+✏ Edytuj
 </button>
 
 <button onclick="deleteProduct(${index})">
-
 🗑 Usuń
-
 </button>
 
 </div>
@@ -807,39 +548,22 @@ ${badge}
 
 }
 
-});
+function deleteProduct(index){
+
+produkty.splice(index,1);
+
+saveProducts();
 
 }
 
 function editProduct(index){
 
 let nowaCena = prompt(
-'Nowa cena:',
+'Nowa cena',
 produkty[index].cena
 );
 
 produkty[index].cena = nowaCena;
-
-saveProducts();
-
-}
-
-function editStock(index){
-
-let nowyStan = prompt(
-'Nowy stan magazynowy:',
-produkty[index].stan
-);
-
-produkty[index].stan = nowyStan;
-
-saveProducts();
-
-}
-
-function deleteProduct(index){
-
-produkty.splice(index,1);
 
 saveProducts();
 
@@ -857,59 +581,14 @@ document.getElementById('orders-list');
 
 kontener.innerHTML = '';
 
-zamowienia.reverse().forEach((zamowienie)=>{
-
-let produktyHTML = '';
-
-let suma = 0;
-
-zamowienie.produkty.forEach((produkt)=>{
-
-let ilosc = produkt.ilosc || 1;
-
-let cena =
-Number(produkt.cena) * ilosc;
-
-suma += cena;
-
-produktyHTML += `
-
-<div class="order-product">
-
-<img src="${produkt.obraz}"
-onerror="this.src='logo (2).png'">
-
-<div>
-
-<b>
-${produkt.nazwa}
-</b>
-
-<br>
-
-Ilość:
-${ilosc}
-
-<br>
-
-${cena.toFixed(2)} zł
-
-</div>
-
-</div>
-
-`;
-
-});
+zamowienia.forEach((zamowienie)=>{
 
 kontener.innerHTML += `
 
 <div class="order">
 
 <h2>
-
 🧾 ${zamowienie.numer}
-
 </h2>
 
 <p>
@@ -920,33 +599,9 @@ kontener.innerHTML += `
 📧 ${zamowienie.email}
 </p>
 
-<p>
-📞 ${zamowienie.telefon}
-</p>
-
-<p>
-🏠 ${zamowienie.adres}
-</p>
-
-<p>
-📅 ${zamowienie.data}
-</p>
-
-<br>
-
-${produktyHTML}
-
-<div class="status nowe">
-
-Nowe zamówienie
-
+<div class="order-status nowe">
+Nowe
 </div>
-
-<h2 style="color:#00ff99;">
-
-${suma.toFixed(2)} zł
-
-</h2>
 
 </div>
 
@@ -956,44 +611,8 @@ ${suma.toFixed(2)} zł
 
 }
 
-/* DASHBOARD */
-
-function updateDashboard(){
-
-document.getElementById(
-'dashboard-products'
-).innerText = produkty.length;
-
-document.getElementById(
-'dashboard-orders'
-).innerText = zamowienia.length;
-
-let sales = 0;
-
-zamowienia.forEach((zam)=>{
-
-zam.produkty.forEach((produkt)=>{
-
-sales +=
-Number(produkt.cena) *
-(produkt.ilosc || 1);
-
-});
-
-});
-
-document.getElementById(
-'dashboard-sales'
-).innerText =
-sales.toFixed(2) + ' zł';
-
-}
-
 renderProducts();
-
 renderOrders();
-
-updateDashboard();
 
 </script>
 
