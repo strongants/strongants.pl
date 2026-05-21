@@ -14,538 +14,6 @@ window.location.href = "index.html";
 </script>
 
 <!DOCTYPE html>
-<html lang="pl">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Strong Ants PRO Admin</title>
-
-<style>
-
-body{
-margin:0;
-background:#0d0d0d;
-font-family:Arial;
-color:white;
-}
-
-.topbar{
-background:black;
-border-bottom:2px solid #ffd000;
-padding:20px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:999;
-}
-
-.logo{
-font-size:34px;
-font-weight:bold;
-color:#ffd000;
-}
-
-.logout{
-background:red;
-border:none;
-padding:12px 22px;
-border-radius:12px;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
-
-.tabs{
-display:flex;
-gap:15px;
-padding:25px;
-flex-wrap:wrap;
-}
-
-.tab-btn{
-background:#161616;
-border:1px solid #333;
-color:white;
-padding:14px 22px;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-transition:0.2s;
-}
-
-.tab-btn.active{
-background:#ffd000;
-color:black;
-}
-
-.tab{
-display:none;
-padding:0 25px 40px;
-}
-
-.tab.active{
-display:block;
-}
-
-h1{
-font-size:42px;
-color:#ffd000;
-margin-bottom:30px;
-}
-
-.product{
-background:#161616;
-border:1px solid #333;
-border-radius:20px;
-padding:25px;
-margin-bottom:25px;
-}
-
-.product-title{
-font-size:28px;
-color:#ffd000;
-margin-bottom:20px;
-font-weight:bold;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.input-group{
-display:flex;
-flex-direction:column;
-}
-
-.input-group label{
-margin-bottom:10px;
-font-size:17px;
-color:#ccc;
-}
-
-.input-group input,
-.input-group select{
-padding:14px;
-background:#0f0f0f;
-border:1px solid #333;
-border-radius:12px;
-color:white;
-font-size:16px;
-}
-
-.save-btn{
-margin-top:25px;
-padding:15px 24px;
-background:#ffd000;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.status{
-margin-top:15px;
-color:#00e676;
-font-size:17px;
-}
-
-.order{
-background:#161616;
-border:1px solid #333;
-border-radius:20px;
-padding:25px;
-margin-bottom:25px;
-}
-
-.order-number{
-font-size:30px;
-font-weight:bold;
-color:#ffd000;
-margin-bottom:20px;
-}
-
-.client{
-margin-bottom:10px;
-font-size:18px;
-}
-
-.order-product{
-display:flex;
-align-items:center;
-gap:15px;
-padding:15px 0;
-border-bottom:1px solid #333;
-}
-
-.order-product img{
-width:70px;
-height:70px;
-object-fit:contain;
-background:white;
-border-radius:12px;
-padding:5px;
-}
-
-.total{
-font-size:30px;
-font-weight:bold;
-margin-top:20px;
-color:#00e676;
-}
-
-.delete-btn{
-margin-top:20px;
-padding:12px 20px;
-background:red;
-border:none;
-border-radius:10px;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
-
-.empty{
-font-size:24px;
-color:#999;
-}
-
-.badge{
-display:inline-block;
-padding:8px 14px;
-border-radius:10px;
-font-weight:bold;
-margin-top:12px;
-}
-
-.available{
-background:#0f5132;
-color:#00ff99;
-}
-
-.out{
-background:#5c0000;
-color:#ff8080;
-}
-
-@media(max-width:768px){
-
-.topbar{
-flex-direction:column;
-gap:15px;
-}
-
-.tabs{
-padding:15px;
-}
-
-.tab{
-padding:0 15px 30px;
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<script>
-
-let haslo =
-prompt("Podaj hasło administratora");
-
-if(haslo !== "StrongAntsMaterraHF7"){
-
-alert("Błędne hasło");
-
-window.location.href = "index.html";
-
-}
-
-</script>
-
-<div class="topbar">
-
-<div class="logo">
-🐜 STRONG ANTS PRO ADMIN
-</div>
-
-<button class="logout"
-onclick="wyloguj()">
-
-Wyloguj
-
-</button>
-
-</div>
-
-<div class="tabs">
-
-<button class="tab-btn active"
-onclick="openTab('mrowki',this)">
-🐜 Mrówki
-</button>
-
-<button class="tab-btn"
-onclick="openTab('dekoracje',this)">
-🏜 Dekoracje
-</button>
-
-<button class="tab-btn"
-onclick="openTab('akcesoria',this)">
-🧪 Akcesoria
-</button>
-
-<button class="tab-btn"
-onclick="openTab('zamowienia',this)">
-📦 Zamówienia
-</button>
-
-</div>
-
-<!-- MRÓWKI -->
-
-<div class="tab active" id="mrowki">
-
-<h1>
-🐜 Zarządzanie mrówkami
-</h1>
-
-<div id="mrowkiPanel"></div>
-
-</div>
-
-<!-- DEKORACJE -->
-
-<div class="tab" id="dekoracje">
-
-<h1>
-🏜 Zarządzanie dekoracjami
-</h1>
-
-<div id="dekoracjePanel"></div>
-
-</div>
-
-<!-- AKCESORIA -->
-
-<div class="tab" id="akcesoria">
-
-<h1>
-🧪 Zarządzanie akcesoriami
-</h1>
-
-<div id="akcesoriaPanel"></div>
-
-</div>
-
-<!-- ZAMÓWIENIA -->
-
-<div class="tab" id="zamowienia">
-
-<h1>
-📦 Zamówienia klientów
-</h1>
-
-<div id="orders"></div>
-
-</div>
-
-<script>
-
-function openTab(id,button){
-
-document.querySelectorAll(".tab")
-.forEach(tab=>{
-tab.classList.remove("active");
-});
-
-document.querySelectorAll(".tab-btn")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-document.getElementById(id)
-.classList.add("active");
-
-button.classList.add("active");
-
-}
-
-function wyloguj(){
-
-location.reload();
-
-}
-
-/* BAZA PRODUKTÓW */
-
-let produkty = {
-
-mrowki:[
-
-{
-id:"camponotus-nicobarensis",
-nazwa:"Camponotus Nicobarensis",
-cena:"38.99",
-stan:10,
-status:"dostepny",
-obraz:"camponotus-nicobarensis.jpg"
-}
-
-],
-
-dekoracje:[
-
-{
-id:"piasek-czarny",
-nazwa:"Piasek czarny",
-cena:"3.99",
-stan:25,
-status:"dostepny",
-obraz:"piasek-czarny.jpg"
-},
-
-{
-id:"piasek-kwarcowy",
-nazwa:"Piasek kwarcowy biały",
-cena:"3.99",
-stan:18,
-status:"dostepny",
-obraz:"piasek-kwarcowy-bialy.jpg"
-}
-
-],
-
-akcesoria:[
-
-{
-id:"poidelko",
-nazwa:"Poidełko do hodowli mrówek",
-cena:"3.99",
-stan:20,
-status:"dostepny",
-obraz:"poidelko-do-hodowli-mrowek.jpg"
-}
-
-]
-
-};
-
-if(localStorage.getItem("produktyPRO")){
-
-produkty =
-JSON.parse(
-localStorage.getItem("produktyPRO")
-);
-
-}
-
-function renderProdukty(kategoria,idPanelu){
-
-const panel =
-document.getElementById(idPanelu);
-
-panel.innerHTML = "";
-
-produkty[kategoria].forEach((produkt,index)=>{
-
-panel.innerHTML += `
-
-<div class="product">
-
-<div class="product-title">
-${produkt.nazwa}
-</div>
-
-<div class="grid">
-
-<div class="input-group">
-
-<label>
-Cena
-</label>
-
-<input type="number"
-id="${kategoria}-cena-${index}"
-value="${produkt.cena}">
-
-</div>
-
-<div class="input-group">
-
-<label>
-Stan magazynowy
-</label>
-
-<input type="number"
-id="${kategoria}-stan-${index}"
-value="${produkt.stan}">
-
-</div>
-
-<div class="input-group">
-
-<label>
-Zdjęcie
-</label>
-
-<input type="text"
-id="${kategoria}-obraz-${index}"
-value="${produkt.obraz}">
-
-</div>
-
-<div class="input-group">
-
-<label>
-Status
-</label>
-
-<select id="${kategoria}-status-${index}">
-
-<option value="dostepny"
-${produkt.status === "dostepny" ? "selected" : ""}>
-
-Dostępny
-
-</option>
-
-<option value="brak"
-${produkt.status === "brak" ? "selected" : ""}>
-
-Brak w magazynie
-
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-<button class="save-btn"
-onclick="zapiszProdukt('${kategoria}',${index})">
-
-💾 Zapisz zmiany
-
-</button>
-
-<div class="status"
-id="${kategoria}-statusinfo-${index}">
-</div>
-
 </div>
 
 `;
@@ -554,176 +22,60 @@ id="${kategoria}-statusinfo-${index}">
 
 }
 
-function zapiszProdukt(kategoria,index){
+function deleteProduct(index){
 
-produkty[kategoria][index].cena =
-document.getElementById(
-`${kategoria}-cena-${index}`
-).value;
+produkty.splice(index,1);
 
-produkty[kategoria][index].stan =
-document.getElementById(
-`${kategoria}-stan-${index}`
-).value;
-
-produkty[kategoria][index].obraz =
-document.getElementById(
-`${kategoria}-obraz-${index}`
-).value;
-
-produkty[kategoria][index].status =
-document.getElementById(
-`${kategoria}-status-${index}`
-).value;
-
-if(produkty[kategoria][index].stan <= 0){
-
-produkty[kategoria][index].status =
-"brak";
+saveProducts();
 
 }
 
-localStorage.setItem(
-"produktyPRO",
-JSON.stringify(produkty)
+function editProduct(index){
+
+let nowaCena = prompt(
+'Nowa cena',
+produkty[index].cena
 );
 
-document.getElementById(
-`${kategoria}-statusinfo-${index}`
-).innerHTML =
-"✔ Zapisano";
+produkty[index].cena = nowaCena;
+
+saveProducts();
 
 }
-
-/* RENDER */
-
-renderProdukty(
-"mrowki",
-"mrowkiPanel"
-);
-
-renderProdukty(
-"dekoracje",
-"dekoracjePanel"
-);
-
-renderProdukty(
-"akcesoria",
-"akcesoriaPanel"
-);
 
 /* ZAMÓWIENIA */
 
 let zamowienia =
-JSON.parse(localStorage.getItem("zamowienia")) || [];
+JSON.parse(localStorage.getItem('zamowienia')) || [];
+
+function renderOrders(){
 
 let kontener =
-document.getElementById("orders");
+document.getElementById('orders-list');
 
-if(zamowienia.length === 0){
+kontener.innerHTML = '';
 
-kontener.innerHTML =
-'<div class="empty">Brak zamówień.</div>';
-
-}
-
-zamowienia.reverse().forEach((zamowienie,index)=>{
-
-let suma = 0;
-
-let produktyHTML = "";
-
-zamowienie.produkty.forEach((produkt)=>{
-
-let ilosc = produkt.ilosc || 1;
-
-let cena =
-Number(produkt.cena) * ilosc;
-
-suma += cena;
-
-produktyHTML += `
-
-<div class="order-product">
-
-<img src="${produkt.obraz}"
-onerror="this.src='logo (2).png'">
-
-<div>
-
-<div style="font-size:20px;
-font-weight:bold;
-color:#ffd000;">
-
-${produkt.nazwa}
-
-</div>
-
-<div style="margin-top:8px;">
-
-📦 Ilość:
-${ilosc}
-
-<br><br>
-
-💰
-${cena.toFixed(2)} zł
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
+zamowienia.forEach((zamowienie)=>{
 
 kontener.innerHTML += `
 
 <div class="order">
 
-<div class="order-number">
-
+<h2>
 🧾 ${zamowienie.numer}
+</h2>
 
-</div>
-
-<div class="client">
+<p>
 👤 ${zamowienie.klient}
-</div>
+</p>
 
-<div class="client">
+<p>
 📧 ${zamowienie.email}
+</p>
+
+<div class="order-status nowe">
+Nowe
 </div>
-
-<div class="client">
-📞 ${zamowienie.telefon}
-</div>
-
-<div class="client">
-🏠 ${zamowienie.adres}
-</div>
-
-<div class="client">
-📅 ${zamowienie.data}
-</div>
-
-${produktyHTML}
-
-<div class="total">
-
-💳 Razem:
-${suma.toFixed(2)} zł
-
-</div>
-
-<button class="delete-btn"
-onclick="usunZamowienie(${zamowienia.length - 1 - index})">
-
-🗑 Usuń zamówienie
-
-</button>
 
 </div>
 
@@ -731,28 +83,10 @@ onclick="usunZamowienie(${zamowienia.length - 1 - index})">
 
 });
 
-function usunZamowienie(index){
-
-let potwierdzenie =
-confirm("Usunąć zamówienie?");
-
-if(!potwierdzenie){
-return;
 }
 
-let zamowienia =
-JSON.parse(localStorage.getItem("zamowienia")) || [];
-
-zamowienia.splice(index,1);
-
-localStorage.setItem(
-"zamowienia",
-JSON.stringify(zamowienia)
-);
-
-location.reload();
-
-}
+renderProducts();
+renderOrders();
 
 </script>
 
