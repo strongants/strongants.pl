@@ -1,27 +1,12 @@
-<script>
-
-let haslo =
-prompt("Podaj hasło administratora");
-
-if(haslo !== "strongantsMatiterraHf7"){
-
-alert("Błędne hasło");
-
-window.location.href = "index.html";
-
-}
-
-</script>
-
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Strong Ants PRO CMS</title>
-
-<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -50,19 +35,22 @@ font-size:32px;
 font-weight:bold;
 color:#ffd000;
 margin-bottom:40px;
+line-height:1.2;
 }
 
 .menu-btn{
 width:100%;
-padding:15px;
-margin-bottom:15px;
+padding:16px;
+margin-bottom:14px;
 background:#161616;
 border:none;
 color:white;
 font-size:18px;
-border-radius:12px;
+border-radius:14px;
 cursor:pointer;
 text-align:left;
+font-weight:bold;
+transition:0.2s;
 }
 
 .menu-btn:hover{
@@ -71,7 +59,7 @@ color:black;
 }
 
 .content{
-margin-left:280px;
+margin-left:260px;
 padding:40px;
 }
 
@@ -79,34 +67,30 @@ padding:40px;
 display:none;
 }
 
-.section.active{
-display:block;
-}
-
 .box{
 background:#161616;
 border:1px solid #333;
-border-radius:20px;
+border-radius:22px;
 padding:25px;
 margin-bottom:25px;
 }
 
 .title{
-font-size:42px;
+font-size:54px;
 color:#ffd000;
-margin-bottom:30px;
+margin-bottom:40px;
 }
 
 input,
 textarea,
 select{
 width:100%;
-padding:15px;
+padding:16px;
 margin-top:10px;
 margin-bottom:20px;
 background:#0f0f0f;
 border:1px solid #333;
-border-radius:12px;
+border-radius:14px;
 color:white;
 font-size:16px;
 box-sizing:border-box;
@@ -124,7 +108,7 @@ cursor:pointer;
 .product{
 background:#1a1a1a;
 padding:20px;
-border-radius:16px;
+border-radius:18px;
 margin-bottom:20px;
 border:1px solid #333;
 }
@@ -135,6 +119,7 @@ height:120px;
 object-fit:cover;
 border-radius:14px;
 background:white;
+padding:5px;
 }
 
 .badge{
@@ -186,14 +171,43 @@ background:#002b5c;
 color:#7ab8ff;
 }
 
+.stats{
+font-size:24px;
+line-height:2;
+}
+
+@media(max-width:900px){
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+border-right:none;
+border-bottom:2px solid #ffd000;
+}
+
+.content{
+margin-left:0;
+padding:20px;
+}
+
+.title{
+font-size:38px;
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
 <div class="sidebar">
 
 <div class="logo">
-🐜 STRONG ANTS
+🐜 STRONG<br>
+ANTS
 </div>
 
 <button class="menu-btn" onclick="openSection('dashboard')">
@@ -224,49 +238,42 @@ color:#7ab8ff;
 
 <div class="content">
 
-<!-- DASHBOARD -->
-
-<div class="section active" id="dashboard">
+<div class="section" id="dashboard">
 
 <h1 class="title">
 📊 Dashboard
 </h1>
 
-<div class="box">
+<div class="box stats">
 
-<h2>
-Statystyki sklepu
-</h2>
+<div>
+🛒 Zamówienia:
+<span id="orders-count">0</span>
+</div>
 
-<p>
-🛒 Zamówienia: <span id="orders-count">0</span>
-</p>
+<div>
+💰 Sprzedaż:
+<span id="sales-total">0 zł</span>
+</div>
 
-<p>
-💰 Sprzedaż: <span id="sales-total">0 zł</span>
-</p>
-
-<p>
-📦 Produkty: <span id="products-count">0</span>
-</p>
-
+<div>
+📦 Produkty:
+<span id="products-count">0</span>
 </div>
 
 </div>
 
-<!-- PRODUKTY -->
+</div>
 
 <div class="section" id="products">
 
 <h1 class="title">
-🛒 Zarządzanie produktami
+🛒 Produkty
 </h1>
 
 <div class="box">
 
-<h2>
-Dodaj nowy produkt
-</h2>
+<h2>Dodaj produkt</h2>
 
 <input id="product-name" placeholder="Nazwa produktu">
 
@@ -282,15 +289,17 @@ type="number"
 placeholder="Stan magazynowy">
 
 <select id="product-category">
+
 <option>Mrówki</option>
 <option>Dekoracje</option>
 <option>Akcesoria</option>
 <option>Pokarmy</option>
 <option>Formikaria</option>
+
 </select>
 
 <input id="product-image"
-placeholder="Nazwa zdjęcia">
+placeholder="Nazwa pliku zdjęcia">
 
 <button onclick="addProduct()">
 ➕ Dodaj produkt
@@ -302,41 +311,29 @@ placeholder="Nazwa zdjęcia">
 
 </div>
 
-<!-- ZAMÓWIENIA -->
-
 <div class="section" id="orders">
 
 <h1 class="title">
-📦 Zamówienia klientów
+📦 Zamówienia
 </h1>
 
 <div id="orders-list"></div>
 
 </div>
 
-<!-- WYSYŁKI -->
-
 <div class="section" id="shipping">
 
 <h1 class="title">
-🚚 Panel wysyłek
+🚚 Wysyłki
 </h1>
 
 <div class="box">
 
-<h2>
-Integracja InPost
-</h2>
-
-<p>
-Tutaj podłączysz API InPost.
-</p>
+Panel wysyłek Strong Ants
 
 </div>
 
 </div>
-
-<!-- PŁATNOŚCI -->
 
 <div class="section" id="payments">
 
@@ -346,72 +343,28 @@ Tutaj podłączysz API InPost.
 
 <div class="box">
 
-<h2>
-Stripe
-</h2>
-
-<input placeholder="Stripe Publishable Key">
-
-<input placeholder="Stripe Secret Key">
-
-<button>
-Połącz Stripe
-</button>
-
-</div>
-
-<div class="box">
-
-<h2>
-PayU
-</h2>
-
-<input placeholder="Client ID">
-
-<input placeholder="Client Secret">
-
-<button>
-Połącz PayU
-</button>
-
-</div>
-
-<div class="box">
-
-<h2>
-Przelewy24
-</h2>
-
-<input placeholder="Merchant ID">
-
-<input placeholder="CRC Key">
-
-<button>
-Połącz Przelewy24
-</button>
+Stripe / PayU / Przelewy24
 
 </div>
 
 </div>
-
-<!-- USTAWIENIA -->
 
 <div class="section" id="settings">
 
 <h1 class="title">
-⚙ Ustawienia sklepu
+⚙ Ustawienia
 </h1>
 
 <div class="box">
 
 <input placeholder="Nazwa sklepu">
 
-<input placeholder="Adres e-mail sklepu">
+<input placeholder="Adres email">
 
 <input placeholder="Telefon">
 
 <button>
-💾 Zapisz ustawienia
+💾 Zapisz
 </button>
 
 </div>
@@ -422,35 +375,39 @@ Połącz Przelewy24
 
 <script>
 
-function openSection(id){
+/* LOGOWANIE */
 
-let sections =
-document.querySelectorAll('.section');
+let haslo =
+prompt("Podaj hasło administratora");
 
-sections.forEach((section)=>{
-section.classList.remove('active');
-});
+if(haslo !== "strongantsMatiterraHf7"){
 
-document.getElementById(id)
-.classList.add('active');
+alert("Błędne hasło");
 
-<script>
+window.location.href = "index.html";
+
+}
 
 /* MENU */
 
 function openSection(id){
 
-let sections =
-document.querySelectorAll('.section');
+document
+.querySelectorAll('.section')
+.forEach((section)=>{
 
-sections.forEach((section)=>{
-section.classList.remove('active');
+section.style.display = "none";
+
 });
 
 document.getElementById(id)
-.classList.add('active');
+.style.display = "block";
 
 }
+
+/* START */
+
+openSection('dashboard');
 
 /* PRODUKTY */
 
@@ -469,74 +426,30 @@ sprzedane:0
 
 {
 id:2,
-nazwa:"Piasek kwarcowy biały",
-opis:"Naturalny biały piasek do formikariów.",
-cena:3.99,
-stan:25,
-kategoria:"Dekoracje",
-obraz:"piasek-kwarcowy-bialy.jpg",
-sprzedane:0
-},
-
-{
-id:3,
-nazwa:"Piasek czarny bazaltowy",
-opis:"Naturalny czarny piasek bazaltowy.",
-cena:3.99,
-stan:20,
-kategoria:"Dekoracje",
-obraz:"piasek-czarny.jpg",
-sprzedane:0
-},
-
-{
-id:4,
-nazwa:"Piasek TerraFlame",
-opis:"Pomarańczowy piasek pustynny.",
-cena:3.99,
-stan:18,
-kategoria:"Dekoracje",
-obraz:"piasek-terraflame.jpg",
-sprzedane:0
-},
-
-{
-id:5,
-nazwa:"Żwirek pustynny",
-opis:"Naturalny żwirek pustynny.",
-cena:3.99,
-stan:15,
-kategoria:"Dekoracje",
-obraz:"zwirek-pustynny.jpg",
-sprzedane:0
-},
-
-{
-id:6,
 nazwa:"Glina czerwona mielona",
-opis:"Glina czerwona do formikariów.",
+opis:"Glina do formikariów.",
 cena:3.49,
-stan:22,
+stan:20,
 kategoria:"Dekoracje",
 obraz:"glina-czerwona-mielona.jpg",
 sprzedane:0
 },
 
 {
-id:7,
+id:3,
 nazwa:"Casuarina wybielana",
-opis:"Naturalna dekoracja do formikariów.",
+opis:"Naturalna dekoracja.",
 cena:3.50,
-stan:14,
+stan:15,
 kategoria:"Dekoracje",
 obraz:"casuarina-wybielana.jpg",
 sprzedane:0
 },
 
 {
-id:8,
+id:4,
 nazwa:"Probówki szklane",
-opis:"Probówki do hodowli mrówek.",
+opis:"Probówki do hodowli.",
 cena:12.99,
 stan:30,
 kategoria:"Akcesoria",
@@ -545,9 +458,9 @@ sprzedane:0
 },
 
 {
-id:9,
-nazwa:"Karmidełko do hodowli mrówek",
-opis:"Karmidełko 3D Strong Ants.",
+id:5,
+nazwa:"Karmidełko",
+opis:"Karmidełko Strong Ants.",
 cena:3.99,
 stan:40,
 kategoria:"Akcesoria",
@@ -558,14 +471,14 @@ sprzedane:0
 ];
 
 let produkty =
-JSON.parse(localStorage.getItem('produkty'));
+JSON.parse(localStorage.getItem("produkty"));
 
 if(!produkty){
 
 produkty = domyslneProdukty;
 
 localStorage.setItem(
-'produkty',
+"produkty",
 JSON.stringify(produkty)
 );
 
@@ -574,11 +487,12 @@ JSON.stringify(produkty)
 function saveProducts(){
 
 localStorage.setItem(
-'produkty',
+"produkty",
 JSON.stringify(produkty)
 );
 
 renderProducts();
+
 updateDashboard();
 
 }
@@ -590,22 +504,22 @@ let produkt = {
 id:Date.now(),
 
 nazwa:
-document.getElementById('product-name').value,
+document.getElementById("product-name").value,
 
 opis:
-document.getElementById('product-description').value,
+document.getElementById("product-description").value,
 
 cena:
-Number(document.getElementById('product-price').value),
+Number(document.getElementById("product-price").value),
 
 stan:
-Number(document.getElementById('product-stock').value),
+Number(document.getElementById("product-stock").value),
 
 kategoria:
-document.getElementById('product-category').value,
+document.getElementById("product-category").value,
 
 obraz:
-document.getElementById('product-image').value,
+document.getElementById("product-image").value,
 
 sprzedane:0
 
@@ -617,20 +531,58 @@ saveProducts();
 
 }
 
+function deleteProduct(index){
+
+produkty.splice(index,1);
+
+saveProducts();
+
+}
+
+function editProduct(index){
+
+let nowaCena =
+prompt("Nowa cena", produkty[index].cena);
+
+if(nowaCena !== null){
+
+produkty[index].cena =
+Number(nowaCena);
+
+}
+
+let nowyStan =
+prompt("Nowy stan", produkty[index].stan);
+
+if(nowyStan !== null){
+
+produkty[index].stan =
+Number(nowyStan);
+
+}
+
+saveProducts();
+
+}
+
 function renderProducts(){
 
 let kontener =
-document.getElementById('products-list');
+document.getElementById("products-list");
 
-kontener.innerHTML = '';
+kontener.innerHTML = "";
 
 produkty.forEach((produkt,index)=>{
 
 let badge =
 produkt.stan > 0
+
 ?
+
 '<div class="badge green">Dostępny</div>'
+
 :
+
 '<div class="badge red">Brak w magazynie</div>';
 
 kontener.innerHTML += `
@@ -647,8 +599,6 @@ onerror="this.src='logo (2).png'">
 <p>💰 ${produkt.cena} zł</p>
 
 <p>📦 Stan: ${produkt.stan}</p>
-
-<p>🔥 Sprzedane: ${produkt.sprzedane}</p>
 
 <p>📂 ${produkt.kategoria}</p>
 
@@ -672,55 +622,17 @@ ${badge}
 
 }
 
-function deleteProduct(index){
-
-produkty.splice(index,1);
-
-saveProducts();
-
-}
-
-function editProduct(index){
-
-let nowaCena = prompt(
-'Nowa cena',
-produkty[index].cena
-);
-
-if(nowaCena !== null){
-
-produkty[index].cena =
-Number(nowaCena);
-
-}
-
-let nowyStan = prompt(
-'Nowy stan magazynowy',
-produkty[index].stan
-);
-
-if(nowyStan !== null){
-
-produkty[index].stan =
-Number(nowyStan);
-
-}
-
-saveProducts();
-
-}
-
 /* ZAMÓWIENIA */
 
 let zamowienia =
-JSON.parse(localStorage.getItem('zamowienia')) || [];
+JSON.parse(localStorage.getItem("zamowienia")) || [];
 
 function renderOrders(){
 
 let kontener =
-document.getElementById('orders-list');
+document.getElementById("orders-list");
 
-kontener.innerHTML = '';
+kontener.innerHTML = "";
 
 if(zamowienia.length === 0){
 
@@ -737,13 +649,21 @@ kontener.innerHTML += `
 
 <div class="order">
 
-<h2>🧾 ${zamowienie.numer}</h2>
+<h2>
+🧾 ${zamowienie.numer}
+</h2>
 
-<p>👤 ${zamowienie.klient}</p>
+<p>
+👤 ${zamowienie.klient}
+</p>
 
-<p>📧 ${zamowienie.email}</p>
+<p>
+📧 ${zamowienie.email}
+</p>
 
-<p>📅 ${zamowienie.data}</p>
+<p>
+📅 ${zamowienie.data}
+</p>
 
 <div class="order-status nowe">
 Nowe
@@ -762,11 +682,11 @@ Nowe
 function updateDashboard(){
 
 document.getElementById(
-'products-count'
+"products-count"
 ).innerText = produkty.length;
 
 document.getElementById(
-'orders-count'
+"orders-count"
 ).innerText = zamowienia.length;
 
 let suma = 0;
@@ -782,9 +702,9 @@ suma += Number(z.suma);
 });
 
 document.getElementById(
-'sales-total'
+"sales-total"
 ).innerText =
-suma.toFixed(2) + ' zł';
+suma.toFixed(2) + " zł";
 
 }
 
