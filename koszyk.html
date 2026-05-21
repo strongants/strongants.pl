@@ -105,18 +105,39 @@ font-size:24px;
 color:#999;
 }
 
+.buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
 .back-button{
 display:inline-block;
-margin-top:30px;
 padding:14px 28px;
 background:#ffd000;
 color:black;
 font-weight:bold;
 border-radius:12px;
 text-decoration:none;
+font-size:20px;
 }
 
-/* NOWE */
+.checkout-button{
+display:inline-block;
+padding:14px 28px;
+background:#00c853;
+color:white;
+font-weight:bold;
+border-radius:12px;
+text-decoration:none;
+font-size:20px;
+transition:0.2s;
+}
+
+.checkout-button:hover{
+transform:scale(1.03);
+}
 
 .quantity-box{
 display:flex;
@@ -205,9 +226,17 @@ STRONG ANTS
 Suma: 0 zł
 </div>
 
+<div class="buttons">
+
 <a href="produkty.html" class="back-button">
 ← Kontynuuj zakupy
 </a>
+
+<a href="checkout.html" class="checkout-button">
+🛒 Zamawiam i płacę
+</a>
+
+</div>
 
 </section>
 
