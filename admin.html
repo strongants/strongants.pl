@@ -438,9 +438,187 @@ document.getElementById(id)
 
 /* BAZA */
 
-let produkty =
-JSON.parse(localStorage.getItem('produkty')) || [];
+<script>
 
+let domyslneProdukty = [
+
+/* MRÓWKI */
+
+{
+id:1,
+nazwa:"Camponotus Nicobarensis",
+opis:"Egzotyczny gatunek mrówek dla początkujących i zaawansowanych hodowców.",
+cena:38.99,
+stan:10,
+kategoria:"Mrówki",
+obraz:"camponotus-nicobarensis.jpg",
+sprzedane:0
+},
+
+/* AKCESORIA */
+
+{
+id:2,
+nazwa:"Poidełko do hodowli mrówek",
+opis:"Poidełko 3D zapewniające stały dostęp do wody.",
+cena:6.99,
+stan:15,
+kategoria:"Akcesoria",
+obraz:"poidelko-do-hodowli-mrowek.jpg",
+sprzedane:0
+},
+
+{
+id:3,
+nazwa:"Probówki szklane",
+opis:"Probówki do zakładania kolonii mrówek.",
+cena:3.99,
+stan:40,
+kategoria:"Akcesoria",
+obraz:"probowki-szklane.jpg",
+sprzedane:0
+},
+
+{
+id:4,
+nazwa:"Mata grzewcza",
+opis:"Mata grzewcza do formikariów i hodowli egzotycznych.",
+cena:34.99,
+stan:8,
+kategoria:"Akcesoria",
+obraz:"mata-grzewcza.jpg",
+sprzedane:0
+},
+
+{
+id:5,
+nazwa:"Butelka tryskawka",
+opis:"Butelka do zraszania formikariów.",
+cena:11.99,
+stan:12,
+kategoria:"Akcesoria",
+obraz:"butelka-tryskawka.jpg",
+sprzedane:0
+},
+
+{
+id:6,
+nazwa:"Pipety 3 ml",
+opis:"Pipety do dozowania miodu i wody.",
+cena:4.99,
+stan:25,
+kategoria:"Akcesoria",
+obraz:"pipety.jpg",
+sprzedane:0
+},
+
+{
+id:7,
+nazwa:"Skalpel do owadów karmowych",
+opis:"Precyzyjny skalpel do porcjowania karmówki.",
+cena:9.99,
+stan:14,
+kategoria:"Akcesoria",
+obraz:"skalpel-do-owadow-karmowych.jpg",
+sprzedane:0
+},
+
+/* DEKORACJE */
+
+{
+id:8,
+nazwa:"Piasek kwarcowy biały",
+opis:"Najczęściej wybierane podłoże do formikariów.",
+cena:3.99,
+stan:30,
+kategoria:"Dekoracje",
+obraz:"piasek-kwarcowy-bialy.jpg",
+sprzedane:0
+},
+
+{
+id:9,
+nazwa:"Piasek czarny bazaltowy",
+opis:"Naturalny czarny piasek bazaltowy do areny.",
+cena:3.99,
+stan:18,
+kategoria:"Dekoracje",
+obraz:"piasek-czarny-bazalt.jpg",
+sprzedane:0
+},
+
+{
+id:10,
+nazwa:"Piasek TerraFlame",
+opis:"Pomarańczowy piasek pustynny do formikariów.",
+cena:3.99,
+stan:20,
+kategoria:"Dekoracje",
+obraz:"piasek-terraflame.jpg",
+sprzedane:0
+},
+
+{
+id:11,
+nazwa:"Żwirek pustynny",
+opis:"Naturalny żwirek pustynny 0,2-0,4 mm.",
+cena:3.99,
+stan:20,
+kategoria:"Dekoracje",
+obraz:"zwirek-pustynny.jpg",
+sprzedane:0
+},
+
+{
+id:12,
+nazwa:"Autorski piasek dekoracyjny Strong Ants",
+opis:"Autorska mieszanka dekoracyjna Strong Ants.",
+cena:2.80,
+stan:16,
+kategoria:"Dekoracje",
+obraz:"autorski-piasek-dekoracyjny-strong-ants.jpg",
+sprzedane:0
+},
+
+{
+id:13,
+nazwa:"Glina czerwona mielona",
+opis:"Naturalna glina czerwona do formikariów.",
+cena:3.49,
+stan:24,
+kategoria:"Dekoracje",
+obraz:"glina-czerwona-mielona.jpg",
+sprzedane:0
+},
+
+{
+id:14,
+nazwa:"Casuarina wybielana",
+opis:"Naturalna dekoracja do formikariów.",
+cena:3.50,
+stan:15,
+kategoria:"Dekoracje",
+obraz:"casuarina-wybielana.jpg",
+sprzedane:0
+}
+
+];
+
+let produkty =
+JSON.parse(localStorage.getItem('produkty'));
+
+if(!produkty){
+
+produkty = domyslneProdukty;
+
+localStorage.setItem(
+'produkty',
+JSON.stringify(produkty)
+);
+
+}
+
+</script>
 function saveProducts(){
 
 localStorage.setItem(
