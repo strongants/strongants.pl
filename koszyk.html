@@ -409,11 +409,14 @@ class="back-button">
 
 </a>
 
-<a href="checkout.html"
+<button
 class="checkout-button"
-id="checkout-btn">
+id="checkout-btn"
+onclick="stripeCheckout()">
 
 🛒 Zamawiam i płacę
+
+</button>
 
 </a>
 
@@ -696,7 +699,57 @@ wyswietlKoszyk();
 }
 
 wyswietlKoszyk();
+async function stripeCheckout(){
 
+let koszyk =
+JSON.parse(localStorage.getItem("koszyk")) || [];
+
+if(koszyk.length === 0){
+
+alert("Koszyk jest pusty");
+
+return;
+
+}
+
+try{
+
+const response = await fetch(
+'/api/create-checkout-session',
+{
+method:'POST',
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body: JSON.stringify({
+items:koszyk
+})
+
+});
+
+const data = await response.json();
+
+if(data.url){
+
+window.location.href = data.url;
+
+}else{
+
+alert("Błąd Stripe");
+
+}
+
+}catch(err){
+
+console.log(err);
+
+alert("Błąd połączenia");
+
+}
+
+}
 </script>
 
 </body>
