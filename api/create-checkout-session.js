@@ -4,63 +4,65 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
 
-if (req.method !== 'POST') {
-return res.status(405).json({
-error: 'Method not allowed'
-});
-}
+  if (req.method !== 'POST') {
+    return res.status(405).json({
+      error: 'Method not allowed'
+    });
+  }
 
-try {
+  try {
 
-const { items } = req.body;
+    console.log(req.body);
 
-const line_items = items.map(item => ({
+    const { items } = req.body;
 
-price_data: {
+    const line_items = items.map(item => ({
 
-currency: 'pln',
+      price_data: {
 
-product_data: {
-name: item.nazwa
-},
+        currency: 'pln',
 
-unit_amount: Math.round(item.cena * 100)
+        product_data: {
+          name: item.nazwa
+        },
 
-},
+        unit_amount: Math.round(item.cena * 100)
 
-quantity: item.ilosc
+      },
 
-}));
+      quantity: item.ilosc
 
-const session =
-await stripe.checkout.sessions.create({
+    }));
 
-payment_method_types: ['card'],
+    const session =
+    await stripe.checkout.sessions.create({
 
-line_items,
+      payment_method_types: ['card'],
 
-mode: 'payment',
+      line_items,
 
-success_url:
-'https://strongants.pl/dziekujemy.html',
+      mode: 'payment',
 
-cancel_url:
-'https://strongants.pl/koszyk.html',
+      success_url:
+      'https://strongants.pl/dziekujemy.html',
 
-});
+      cancel_url:
+      'https://strongants.pl/koszyk.html',
 
-return res.status(200).json({
-url: session.url
-});
+    });
 
-} catch (err) {
+    return res.status(200).json({
+      url: session.url
+    });
 
-console.log(err);
+  } catch (err) {
 
-return res.status(500).json({
-error: err.message
-});
+    console.log(err);
 
-}
+    return res.status(500).json({
+      error: err.message
+    });
+
+  }
 
 }
