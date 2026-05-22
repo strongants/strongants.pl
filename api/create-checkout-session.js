@@ -1,16 +1,16 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+import Stripe from 'stripe';
 
-module.exports = async (req, res) => {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-if(req.method !== 'POST'){
+export default async function handler(req, res) {
 
+if (req.method !== 'POST') {
 return res.status(405).json({
 error: 'Method not allowed'
 });
-
 }
 
-try{
+try {
 
 const { items } = req.body;
 
@@ -21,11 +21,7 @@ price_data: {
 currency: 'pln',
 
 product_data: {
-
-name: item.nazwa,
-
-images: [item.obraz]
-
+name: item.nazwa
 },
 
 unit_amount: Math.round(item.cena * 100)
@@ -36,12 +32,10 @@ quantity: item.ilosc
 
 }));
 
-const session = await stripe.checkout.sessions.create({
+const session =
+await stripe.checkout.sessions.create({
 
-payment_method_types: [
-'card',
-'blik'
-],
+payment_method_types: ['card'],
 
 line_items,
 
@@ -55,22 +49,18 @@ cancel_url:
 
 });
 
-res.status(200).json({
-
+return res.status(200).json({
 url: session.url
-
 });
 
-}catch(err){
+} catch (err) {
 
 console.log(err);
 
-res.status(500).json({
-
-error: 'Stripe error'
-
+return res.status(500).json({
+error: err.message
 });
 
 }
 
-};
+}
