@@ -1,12 +1,12 @@
-const Stripe = require('stripe');
+import Stripe from 'stripe';
 
-module.exports = async function handler(req, res) {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export default async function handler(req, res) {
 
   try {
 
-    console.log("START API");
-
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    console.log("API START");
 
     if (req.method !== 'POST') {
       return res.status(405).json({
@@ -14,10 +14,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    console.log("BODY:");
-    console.log(req.body);
-
     const items = req.body.items || [];
+
+    console.log(items);
 
     const line_items = items.map(item => ({
       price_data: {
@@ -30,9 +29,6 @@ module.exports = async function handler(req, res) {
       quantity: item.ilosc || 1
     }));
 
-    console.log("LINE ITEMS:");
-    console.log(line_items);
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,
@@ -42,22 +38,18 @@ module.exports = async function handler(req, res) {
       cancel_url: 'https://strongants.pl/koszyk.html',
     });
 
-    console.log("SESSION OK");
-
     return res.status(200).json({
       url: session.url
     });
 
   } catch (err) {
 
-    console.error("BŁĄD:");
     console.error(err);
 
     return res.status(500).json({
-      error: err.message,
-      full: err
+      error: err.message
     });
 
   }
 
-};
+}
