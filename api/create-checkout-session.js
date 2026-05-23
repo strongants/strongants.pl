@@ -1,35 +1,37 @@
-import Stripe from 'stripe';
+const Stripe = require('stripe');
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-04-10',
-});
-
-export default async function handler(req, res) {
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({
-      error: 'Method not allowed'
-    });
-  }
+module.exports = async function handler(req, res) {
 
   try {
 
-    console.log("API działa");
+    console.log("START API");
 
-    const { items } = req.body;
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-    console.log(items);
+    if (req.method !== 'POST') {
+      return res.status(405).json({
+        error: 'Method not allowed'
+      });
+    }
+
+    console.log("BODY:");
+    console.log(req.body);
+
+    const items = req.body.items || [];
 
     const line_items = items.map(item => ({
       price_data: {
         currency: 'pln',
         product_data: {
-          name: item.nazwa
+          name: item.nazwa || 'Produkt'
         },
-        unit_amount: Math.round(item.cena * 100)
+        unit_amount: Math.round((item.cena || 0) * 100)
       },
-      quantity: item.ilosc
+      quantity: item.ilosc || 1
     }));
+
+    console.log("LINE ITEMS:");
+    console.log(line_items);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -40,18 +42,22 @@ export default async function handler(req, res) {
       cancel_url: 'https://strongants.pl/koszyk.html',
     });
 
+    console.log("SESSION OK");
+
     return res.status(200).json({
       url: session.url
     });
 
   } catch (err) {
 
-    console.error("BŁĄD STRIPE:");
+    console.error("BŁĄD:");
     console.error(err);
 
     return res.status(500).json({
-      error: err.message
+      error: err.message,
+      full: err
     });
 
   }
-}
+
+};
