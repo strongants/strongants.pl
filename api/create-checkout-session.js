@@ -1,8 +1,8 @@
-const Stripe = require('stripe');
+import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
 
   try {
 
@@ -12,7 +12,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const items = req.body.items || [];
+    const { items } = req.body;
 
     const line_items = items.map(item => ({
       price_data: {
@@ -20,9 +20,9 @@ module.exports = async function handler(req, res) {
         product_data: {
           name: item.nazwa || 'Produkt'
         },
-        unit_amount: Math.round((item.cena || 0) * 100)
+        unit_amount: Math.round(Number(item.cena) * 100),
       },
-      quantity: item.ilosc || 1
+      quantity: Number(item.ilosc) || 1,
     }));
 
     const session = await stripe.checkout.sessions.create({
@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
       cancel_url: 'https://strongants.pl/koszyk.html',
     });
 
-    return res.status(200).json({
+    res.status(200).json({
       url: session.url
     });
 
@@ -42,10 +42,10 @@ module.exports = async function handler(req, res) {
 
     console.error(err);
 
-    return res.status(500).json({
+    res.status(500).json({
       error: err.message
     });
 
   }
 
-};
+}
