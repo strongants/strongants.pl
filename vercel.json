@@ -1,7 +1,7 @@
 {
   "functions": {
-    "api/*.js": {
-      "runtime": "nodejs20.x"
+    "api/create-checkout-session.js": {
+      "runtime": "@vercel/node@3.0.7"
     }
   }
 }
