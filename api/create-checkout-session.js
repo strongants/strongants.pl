@@ -1,10 +1,10 @@
-import Stripe from 'stripe';
+const Stripe = require('stripe');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
 
-  console.log("START API");
+  console.log("API START");
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -14,15 +14,15 @@ export default async function handler(req, res) {
 
   try {
 
-    console.log("BODY:", req.body);
+    let body = req.body;
 
-    const { items } = req.body;
-
-    if (!items || !Array.isArray(items)) {
-      return res.status(400).json({
-        error: 'Brak items'
-      });
+    if (typeof body === 'string') {
+      body = JSON.parse(body);
     }
+
+    console.log("BODY:", body);
+
+    const items = body.items || [];
 
     const line_items = items.map(item => ({
       price_data: {
@@ -35,18 +35,13 @@ export default async function handler(req, res) {
       quantity: item.ilosc || 1
     }));
 
-    console.log("LINE ITEMS:", line_items);
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
-
       success_url: 'https://www.strongants.pl/dziekujemy.html',
       cancel_url: 'https://www.strongants.pl/koszyk.html',
     });
-
-    console.log("SESSION:", session.url);
 
     return res.status(200).json({
       url: session.url
@@ -54,7 +49,6 @@ export default async function handler(req, res) {
 
   } catch (err) {
 
-    console.error("BŁĄD:");
     console.error(err);
 
     return res.status(500).json({
