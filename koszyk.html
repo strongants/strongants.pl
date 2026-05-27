@@ -1,429 +1,3 @@
-<!DOCTYPE html>
-<html lang="pl">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Koszyk - Strong Ants</title>
-
-<style>
-
-body{
-margin:0;
-background:#0d0d0d;
-font-family:Arial;
-color:white;
-overflow-x:hidden;
-}
-
-header{
-background:black;
-padding:20px;
-border-bottom:2px solid #ffd000;
-}
-
-.logo{
-font-size:32px;
-font-weight:bold;
-color:#ffd000;
-display:flex;
-align-items:center;
-gap:12px;
-text-decoration:none;
-}
-
-.section{
-padding:60px 10%;
-animation:fadeIn 0.5s ease;
-}
-
-.title{
-font-size:42px;
-color:#ffd000;
-margin-bottom:15px;
-}
-
-.delivery-info{
-background:#1c1c1c;
-border:1px solid #333;
-padding:18px;
-border-radius:16px;
-margin-bottom:35px;
-font-size:18px;
-color:#00e676;
-font-weight:bold;
-animation:slideDown 0.4s ease;
-}
-
-.product{
-background:#161616;
-border:1px solid #333;
-border-radius:20px;
-padding:20px;
-margin-bottom:20px;
-display:flex;
-gap:20px;
-align-items:center;
-transition:0.25s;
-animation:fadeInUp 0.3s ease;
-}
-
-.product:hover{
-transform:translateY(-4px);
-border-color:#ffd000;
-}
-
-.product img{
-width:120px;
-height:120px;
-object-fit:contain;
-background:white;
-border-radius:15px;
-padding:10px;
-}
-
-.product-info{
-flex:1;
-}
-
-.product h3{
-color:#ffd000;
-margin:0 0 10px;
-font-size:28px;
-}
-
-.product-summary{
-font-size:18px;
-color:#bbb;
-margin-top:10px;
-line-height:1.8;
-}
-
-.price{
-font-size:32px;
-font-weight:bold;
-color:#ffd000;
-margin-top:15px;
-}
-
-.remove{
-background:red;
-border:none;
-padding:12px 20px;
-border-radius:12px;
-color:white;
-cursor:pointer;
-font-weight:bold;
-transition:0.2s;
-font-size:16px;
-}
-
-.remove:hover{
-transform:scale(1.05);
-}
-
-.total-box{
-background:#161616;
-border:1px solid #333;
-border-radius:22px;
-padding:30px;
-margin-top:40px;
-animation:fadeIn 0.5s ease;
-}
-
-.total-row{
-display:flex;
-justify-content:space-between;
-font-size:24px;
-margin-bottom:18px;
-}
-
-.total{
-font-size:42px;
-font-weight:bold;
-color:#ffd000;
-margin-top:20px;
-}
-
-.empty{
-font-size:24px;
-color:#999;
-}
-
-.buttons{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-margin-top:35px;
-}
-
-.back-button{
-display:inline-block;
-padding:16px 30px;
-background:#ffd000;
-color:black;
-font-weight:bold;
-border-radius:14px;
-text-decoration:none;
-font-size:20px;
-transition:0.2s;
-}
-
-.back-button:hover{
-transform:scale(1.03);
-}
-
-.checkout-button{
-display:inline-block;
-padding:16px 30px;
-background:#00c853;
-color:white;
-font-weight:bold;
-border-radius:14px;
-text-decoration:none;
-font-size:20px;
-transition:0.2s;
-}
-
-.checkout-button:hover{
-transform:scale(1.03);
-}
-
-.checkout-disabled{
-background:#666 !important;
-pointer-events:none;
-opacity:0.5;
-}
-
-.quantity-box{
-display:flex;
-align-items:center;
-gap:12px;
-margin-top:18px;
-}
-
-.quantity-box button{
-width:40px;
-height:40px;
-border:none;
-border-radius:12px;
-background:#ffd000;
-color:black;
-font-size:24px;
-font-weight:bold;
-cursor:pointer;
-transition:0.2s;
-}
-
-.quantity-box button:hover{
-transform:scale(1.08);
-}
-
-.quantity-number{
-font-size:24px;
-font-weight:bold;
-min-width:35px;
-text-align:center;
-}
-
-.stock-badge{
-display:inline-block;
-margin-top:15px;
-padding:10px 16px;
-border-radius:12px;
-font-weight:bold;
-font-size:16px;
-}
-
-.stock-ok{
-background:#003d1f;
-color:#00ff99;
-}
-
-.stock-bad{
-background:#4d0000;
-color:#ff9c9c;
-}
-
-.secure{
-margin-top:25px;
-font-size:18px;
-color:#999;
-text-align:center;
-}
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-}
-
-to{
-opacity:1;
-}
-
-}
-
-@keyframes fadeInUp{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-@keyframes slideDown{
-
-from{
-opacity:0;
-transform:translateY(-20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-@media(max-width:900px){
-
-.product{
-flex-direction:column;
-align-items:flex-start;
-}
-
-.product img{
-width:100%;
-max-width:220px;
-height:auto;
-}
-
-.title{
-font-size:34px;
-}
-
-.total{
-font-size:34px;
-}
-
-.total-row{
-font-size:20px;
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<a href="index.html" class="logo">
-
-<img src="logo (2).png"
-style="width:55px; height:55px; border-radius:12px;">
-
-<div>
-STRONG ANTS
-</div>
-
-</a>
-
-</header>
-
-<section class="section">
-
-<h1 class="title" id="cart-title">
-
-🛒 Twój koszyk
-
-</h1>
-
-<div class="delivery-info">
-
-🚚 Darmowa dostawa do Paczkomatu od 50 zł
-
-</div>
-
-<div id="koszyk"></div>
-
-<div class="total-box">
-
-<div class="total-row">
-
-<span>
-Produkty:
-</span>
-
-<span id="produkty-suma">
-0 zł
-</span>
-
-</div>
-
-<div class="total-row">
-
-<span>
-Dostawa:
-</span>
-
-<span id="dostawa">
-14.99 zł
-</span>
-
-</div>
-
-<div class="total">
-Razem:
-<span id="suma">
-0 zł
-</span>
-</div>
-
-<div class="secure">
-
-🔒 Bezpieczne płatności Strong Ants
-
-</div>
-
-</div>
-
-<div class="buttons">
-
-<a href="produkty.html"
-class="back-button">
-
-← Kontynuuj zakupy
-
-</a>
-
-<button
-class="checkout-button"
-id="checkout-btn"
-onclick="stripeCheckout()">
-
-🛒 Zamawiam i płacę
-
-</button>
-
-</a>
-
-</div>
-
-</section>
-
 <script>
 
 function wyswietlKoszyk(){
@@ -699,6 +273,7 @@ wyswietlKoszyk();
 }
 
 wyswietlKoszyk();
+
 async function stripeCheckout(){
 
 let koszyk =
@@ -729,15 +304,36 @@ items:koszyk
 
 });
 
-const data = await response.json();
+const text = await response.text();
+
+console.log("ODPOWIEDŹ API:");
+console.log(text);
+
+let data;
+
+try{
+
+data = JSON.parse(text);
+
+}catch(e){
+
+alert("API zwróciło błąd:\n\n" + text);
+
+return;
+
+}
 
 if(data.url){
 
 window.location.href = data.url;
 
+}else if(data.error){
+
+alert("Stripe Error:\n\n" + data.error);
+
 }else{
 
-alert("Błąd Stripe");
+alert("Nieznany błąd Stripe");
 
 }
 
@@ -750,8 +346,5 @@ alert("Błąd połączenia");
 }
 
 }
+
 </script>
-
-</body>
-
-</html>
